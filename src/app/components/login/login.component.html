@@ -1,0 +1,72 @@
+<div class="wrapper" style="overflow:hidden;">
+
+  <div class="content-wrapper">
+
+    <div class="bg-login">
+      <div class="white-login">
+        <img src="assets/img/logo-login.png">
+        <form action="#" method="get" #f="ngForm" class="sidebar-form">
+
+
+          <div class="caption"> Nomor Tri Kamu  </div>
+
+          <!-- <div class="caption"><ng-container i18n="input label | Ask user to enter his msisdn"> Enter your tri number. </ng-container>  </div> -->
+
+          <input type="text" class="login-input" name="msisdn" [pattern]="pattern" ngModel required minlength="10" maxlength="20" #name="ngModel"
+          />
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              Msisdn diperlukan.
+            </div>
+            <div *ngIf="name.errors.minlength">
+              Msisdn harus minimal 10 karakter.
+            </div>
+            <div *ngIf="name.errors.pattern">
+              Nomor hanya diperbolehkan
+            </div>
+          </div>
+
+          <div *ngIf="show">
+            <div class="caption"> Kode Otentikasi </div>
+            <input type="text" class="login-input" [pattern]="pattern" name="otp" minlength="6" maxlength="6" required ngModel #otpvalue="ngModel" />
+            <div *ngIf="otpvalue.invalid && (otpvalue.dirty || otpvalue.touched)" class="alert alert-danger">
+              <div *ngIf="otpvalue.errors.required">
+                OTP diperlukan.
+              </div>
+              <div *ngIf="otpvalue.errors.minlength">
+                OTP harus panjang 6 karakter.
+              </div>
+              <div *ngIf="name.errors.pattern">
+                Nomor hanya diperbolehkan
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+        <div class="caption-forget otpsend" (click)="otpGenerate(f)" *ngIf="show">
+          <a style="color: #72afd2;"> Kirim Ulang Kode</a>
+        </div>
+
+        <!-- <a href="#">Tentang Bima</a> -->
+        
+        <button type="button" class="btn-flat otpButton" (click)="otpGenerate(f)" *ngIf="!show" [disabled]="name.invalid"> LOGIN </button>
+        <button type="button" class="btn-flat" (click)="login(f)" *ngIf="show" [disabled]="name.invalid && otpvalue.invalid"> LOGIN </button>
+
+      </div>
+    </div>
+  </div>
+  <!-- ./contentwrapper -->
+  <footer class="main-footer">
+
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- OTP Modal -->
+<div class="modalMain" *ngIf="showPopUp">
+  <div class="popCont">Meminta One Time Password<span class="loader__dot">.</span>
+    <span class="loader__dot">.</span>
+    <span class="loader__dot">.</span>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-4">
+      <img src="assets/img/btn-user2-big.png" class="imageWidth"><br>
+       <p style= "margin-left: 43%;"> Contact Tri</p>
+      </div>
+      <div class="col-6">
+
+      </div>
+      <div class="col-2">
+      </div>
+  </div>
+</div> -->
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2" class="profilecol">
+        <img src="assets/img/btn-user2-big.png" class="profile-image">
+        <!-- <p style="padding-left: 15px;">{{staticText.Contact_Tri | translate: languageUse}}</p> -->
+      </div>
+      <div class="col-6 profilenew">
+          <img src="assets/img/back.png" routerLink="/contact-tri" style="width: 50px; margin: -7px 0 0 -7px; ">
+          <div class="newstyle">
+              <form action="#" method="get" #f="ngForm" class="sidebar-form">
+                  <div class="caption"> {{staticText['Contact Person'] | translate: languageUse}} </div>
+                  <input type="text" class="login-input" name="userName" style="border: 1px solid #ffffff !important; background: #e9ecef !important;"  ngModel required  #name="ngModel"/>
+                  
+                  <div class="caption"> Service Type </div>
+                  <!-- <input type="text" class="login-input" name="service_Type"  ngModel required  #type="ngModel"/> -->
+                  <select class="login-input" name="serviceType"  ngModel required [(ngModel)]='selectedTypeValue'  #type="ngModel">
+                   <option value="10220">Complaint</option>
+                   <option value="10217">Inquiry</option>
+                 </select>
+   
+                 <div class="caption"> {{staticText['Reply Via'] | translate: languageUse}} </div>
+                 <!-- <input type="text" class="login-input" name="service_Type"  ngModel required  #type="ngModel"/> -->
+                 <select class="login-input" (change)="change($event, f)" name="replyType" [(ngModel)]='selectedReplyValue'  ngModel required  #type="ngModel">
+                  <option value="1">Email</option>
+                  <option value="2">Phone</option>
+                </select>
+   
+                <div class="caption" *ngIf="showEmail"> Email </div>
+                <input type="email" *ngIf="showEmail" style="border: 1px solid #ffffff !important; background: #e9ecef !important;"   class="login-input" name="email"  [(ngModel)]='email' required  #emailValue="ngModel"/>
+ 
+                  <div class="caption" *ngIf="!showEmail"> Phone </div>
+                  <input type="number" *ngIf="!showEmail"  style="border: 1px solid #ffffff !important; background: #e9ecef !important;"   class="login-input" name="phone"  [(ngModel)]='msisdn' required  #numb="ngModel"/>
+                  <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    
+                  </div> -->
+                  <div class="caption"> {{staticText['Message Title'] | translate: languageUse}} </div>
+                  <input type="text" style="border: 1px solid #ffffff !important; background: #e9ecef !important;"  class="login-input" name="title"  ngModel required #title="ngModel"/>
+   
+                  <div class="caption"> {{staticText['Message Content'] | translate: languageUse}} </div>
+                  <input type="text" style="border: 1px solid #ffffff !important; background: #e9ecef !important;"  class="login-input" name="msgcontnt"  ngModel required #content="ngModel"/>
+                 
+               <button type="button" class="btnsbmt btn-flat btnStyle" [class.buttonDisable]="disableSubmit" [disabled]="disableSubmit" (click)="leaveMessage(f)" style="display: block; margin-top: 20px;" > Submit</button>
+             </form>
+           </div>
+      </div>
+      <div class="col-2">
+        </div>
+    </div>
+  </div>

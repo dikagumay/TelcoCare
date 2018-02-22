@@ -1,0 +1,45 @@
+
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2" class="profilecol">
+        <img src="assets/img/user.png" class="profile-image"> 
+        <p class="pofile-text">{{staticText.Profile | translate: languageUse}}</p>
+      </div>
+      <div class="col-6 profilenew">
+        <ul class="detail-profile newulstyle">
+          <li style="display: inline-flex; border: none;"> 
+            <input type="checkbox" (change)="change1($event, 'x')" class="checkstyle" [(ngModel)]="selcted1">
+            <input type="text" class="noInput" name="msisdn1" [class.showBorder]="selcted1"  [(ngModel)]="msisdn1"/>
+            <input type="text" class="login-input" name="quota1" [(ngModel)]="quota1" style="margin-right: 2%;"/>
+            <button type="button" *ngIf="(showResend1)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted1" style="display: inline; min-width: 75px; " [disabled]="!selcted1" (click)="console.log('val'+msisdn1); resendChild(msisdn1);" > RESEND</button>
+            <button type="button" *ngIf="!(showResend1)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted1" style="display: inline; min-width: 75px; " [disabled]="!selcted1"> SET</button>
+           </li>
+           <li style="display: inline-flex; border: none;"> 
+            <input type="checkbox" (change)="change2($event, 'x')" class="checkstyle" [(ngModel)]="selcted2">
+            <input type="text" class="noInput" name="msisdn2" [class.showBorder]="selcted2"  [(ngModel)]="msisdn2"/>
+            <input type="text" class="login-input" name="quota2" [(ngModel)]="quota2" style="margin-right: 2%;"/>
+            <button type="button" *ngIf="(showResend2)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted2" style="display: inline; min-width: 75px; " [disabled]="!selcted2" (click)="console.log('val'+msisdn2); resendChild(msisdn2);" > RESEND</button>
+            <button type="button" *ngIf="!(showResend2)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted2" style="display: inline; min-width: 75px; " [disabled]="!selcted2" > SET</button>
+           </li>
+           <li style="display: inline-flex; border: none;"> 
+            <input type="checkbox" (change)="change3($event, 'x')" class="checkstyle" [(ngModel)]="selcted3">
+            <input type="text" class="noInput" name="msisdn3" [class.showBorder]="selcted3"  [(ngModel)]="msisdn3"/>
+            <input type="text" class="login-input" name="quota3" [(ngModel)]="quota3" style="margin-right: 2%;"/>
+            <button type="button" *ngIf="(showResend3)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted3" style="display: inline; min-width: 75px; " [disabled]="!selcted3" (click)="console.log('val'+msisdn3); resendChild(msisdn3);" > RESEND</button>
+            <button type="button" *ngIf="!(showResend3)" class="btn-flat emailbutton" [class.buttonDisable]="!selcted3" style="display: inline; min-width: 75px; " [disabled]="!selcted3" (click)="console.log('set'+msisdn3); setChild(msisdn3);" > SET</button>
+           </li>
+           
+          <li>
+              <button type="button" class="btn-flat emailbutton"  style="display: inline; " > Delete</button>
+          </li>  
+          <p>NOTE:</p>
+          <p>How to share:<span class="floatRight">Input Number, choose quota limit and then press SET button. <span></span></span></p>
+          <p>How to share:<span class="floatRight">Choose a number that you want to remove, press DETELE button. <span></span></span></p>
+          <p>How to share:<span class="floatRight">Input Number, choose quota limit and then press RESEND button. <span></span></span></p>
+        </ul>
+      </div>
+      <div class="col-2">
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+.floatRight{
+    float: right;
+}
+.boldFont{
+    font-weight: bold;
+}
+.payButton{
+    display: inline;
+    float: right !important;
+}

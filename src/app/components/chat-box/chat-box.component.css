@@ -1,0 +1,63 @@
+p{ margin: 0px;}
+.ownContainer{
+    width: 550px;
+    margin: 0 auto;
+}
+.msgdiv{
+    background: #000000;
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 10px;
+    margin-top:20px !important;
+    display: inline-block;
+}
+
+.res{
+    background: #000000;
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 10px;
+    margin-top:20px !important;
+    clear: both;
+}
+.req{
+    font-weight: bold;
+    padding: 10px;
+    background: #eee;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom:0px;
+    float: right;
+    clear: both;
+}
+.chatboxrow{
+    margin-right: 20px !important;
+    margin-left: 20px !important; 
+}
+.compose{
+    width: 90%;
+}
+.charHeit{
+    overflow: auto;
+    max-height: 260px;
+    padding-right: 20px;
+}
+.chatBox{
+    width:700px; margin:0 auto; position:relative;    
+}
+.inputStyl{
+    border: 2px solid; 
+    width: 41%; 
+    border-radius: 15px;
+    outline: none; 
+    padding-left: 10px;
+}
+
+@media screen and (max-width:767px){
+    .ownContainer{ width: 95%; padding: 15px;}
+    .profilenew{ margin-top:0px;}
+    .compose{ left:6%; width: 100%;}
+    .chatBox{ width:100%;}
+    .inputStyl{ width: 82%;}
+}

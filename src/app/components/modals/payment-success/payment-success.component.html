@@ -1,0 +1,47 @@
+<div class="container-fluid">
+        <div class="modal-header">
+                <div *ngIf="modalData?.status">
+                    <!-- <h4 class="modal-title pull-left">{{staticText['Welcome'] | translate: languageUse}}</h4> -->
+                    <h4 class="modal-title pull-left" style="font-weight: bold; font-size: 20px; color: #666666;">{{staticText['Thank You'] | translate: languageUse}}</h4>
+                </div>
+            
+                <div *ngIf="!modalData?.status">
+                    <h4 class="modal-title pull-left"></h4>
+                </div>
+            
+                <button type="button" class="close pull-right" aria-label="Close" (click)="closepopup();">X
+              </button>
+            </div>
+            <!-- Modal Body -->
+<div class="modal-body">
+        <div *ngIf="modalData?.status">
+            <!-- <p>{{staticText['Thank you, your transaction has been processed.'] | translate: languageUse}}</p> -->
+            <p style=" font-size: 14px; color: #666666;">{{staticText['Thank you, your transaction '] | translate: languageUse}} "{{prodName}}" {{staticText[' has been processed.'] | translate: languageUse}}
+                    <!-- <div>
+                            <p    style= "text-align: center;">Share</p>
+                        </div>    -->
+        </div>
+        <div *ngIf="!modalData?.status">
+            <p>{{modalData.message}} </p>
+            <div>
+            </div>
+        </div>
+    
+        <div *ngIf="!modalData">
+            <p>{{staticText['Please send sms through bima plus.'] | translate: languageUse}}</p>
+            <div>
+            </div>
+        </div>
+    
+    </div>
+    <div class="modal-footer" *ngIf="modalData?.status">
+            
+            
+        </div>
+        
+        <div class="modal-footer" *ngIf="!modalData?.status">
+            <button type="button" class="btn btn-sm" (click)="closepopup();">Ok
+              </button>
+        </div>
+
+</div>

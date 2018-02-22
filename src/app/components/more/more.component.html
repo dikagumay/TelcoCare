@@ -1,0 +1,783 @@
+<div class="container-fluid" [style.background] = "categoryId == 1? '#343432' : '#ffffff'" >
+        
+       
+           <!-- <BANNER movie> -->
+           <!--topbanner-->
+           <div class="row" *ngIf="flag == 'morebanner'">
+               <div class="col-4" class="banner-image" *ngFor='let detbanner of productBannerDetails'>
+                   <div class="swiper-slide" class="content-top movieCon" *ngIf="categoryId == 1">
+                       <a [routerLink]="['/movie-detail']" (click)="openDetail('',detbanner,'movie')">
+                           <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}" onError="this.src='../../../assets/img/DefaultMovie1.png'">
+                       </a>
+                       <div class="row">
+                               <div class="col-8">
+                                       <p class="product-name" style="color:#fff;" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                               </div>
+                               <div class="col-4">
+                                   
+                                       <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                               <button style="border-radius: 0 !important;margin-left: 0px !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                           </div>
+                                           <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                               <button style="border-radius: 0 !important;margin-left: 0px !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                   
+                                           </div> -->
+                                           <div *ngIf="detbanner?.isRedirectToLink">
+                                               <button style="border-radius: 0 !important;margin-left: 0px !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                             </div>
+                                             <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                               <button style="border-radius: 0 !important;margin-left: 0px !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                               </div>
+                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                   <button style="border-radius: 0 !important;margin-left: 0px !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                               </div>
+                               </div>
+                           </div>
+                   </div>
+       
+               </div>
+       
+           </div>
+       
+           <!--favourites-->
+       
+       
+       <h1 class="label-name" style="color:#fff; background:#343432;padding-top: 15px; padding-bottom: 15px; margin-top: 30px;" *ngIf="categoryId == 1 && flow !== 'home'">{{groupName}}</h1>
+           <div class="row" *ngIf="flag == 'product'">
+       
+               <div class="col-2" class="banner-image" *ngFor='let detbanner of morePageList'  >
+       
+                   <div class="content"  style="background-color: #3f4140; border: 1px solid #4b4b4a;"  *ngIf="categoryId == 1 && flow !== 'home'">
+                       <a [routerLink]="['/movie-detail']" (click)="openDetail('', detbanner,'movie')">
+       
+                           <img class="more-image" src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}"onError="this.src='../../../assets/img/DefaultMovie3.png'">
+                       </a>
+                       <div>
+                           <div>
+                               <p class="product-name"  style="color:#fff;" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                           </div>
+       
+                       </div>
+                       <div>
+                           <div>
+                               <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                               <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                   <button style="border-radius: 0 !important; background:transparent;" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                               </div>
+                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                   <button style="border-radius: 0 !important; background:transparent;" class="btn btn-block pricebtn" (click)="onNavigate(detail, detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                               </div> -->
+                               <div *ngIf="detbanner?.isRedirectToLink">
+                                   <button type="button"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                 </div>
+                                 <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                   <button type="button"  class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                   </div>
+                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                       <button type="button"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                   </div>
+       
+                           </div>
+                       </div>
+       
+                   </div>
+       
+       
+               </div>
+           </div>
+       
+           <!--Notification-->
+           <div class="lft12 marLR5" *ngIf="flag == 'notification'">
+                   <div class="content-top banner-image" *ngFor='let detbanner of morePageList'>
+           
+                       <div class="swiper-slide">
+                           <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+           
+                               <img class="more-image-top" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" onError="this.src='../../../assets/img/DefaultMovie3.png'">
+                           </a>
+                           <div>
+                               <div>
+                                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                               </div>
+           
+                           </div>
+                           <div>
+                               <div>
+                                   <!--<div *ngIf="detbanner?.productPrice > 0">
+               <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+               </div>-->
+                                   <div *ngIf="detbanner?.productPrice > 0">
+                                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                   </div>
+                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+           
+                                   </div>
+           
+                               </div>
+                           </div>
+           
+           
+           
+                       </div>
+                   </div>
+                   </div>
+           <!--home page-->
+           <!--top banner-->
+           <div class="row" *ngIf="flag == 'morehomebanner'">
+                   
+               <div class="col-4" class="banner-image" *ngFor='let detbanner of homeBannerDetails'>
+                   <div class="content-top" *ngIf="categoryId == -1">
+                       <a [routerLink]="['/home-detail']" (click)="openDetail('',detbanner,'home')">
+                           <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}" (error)="setImage(detbanner.categoryId,'detbanner',$event)">
+                       </a>
+                       <div class="row">
+                           <div class="col-8">
+                                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                           </div>
+                           <div class="col-4">
+                               
+                                               <div *ngIf="detbanner?.productPrice > 0">
+                                                       <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                   </div>
+                                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                       <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+           
+                                                   </div>
+                           </div>
+                       </div>
+                   </div>
+       
+               </div>
+       
+           </div>
+       
+           <!--rfu-->
+           <!-- <h1 class="label-name"  *ngIf="categoryId == -1 && flag == 'rfu'">{{groupName}}</h1> -->
+           <div class="row">
+               <div class="col-3" class="banner-image" *ngFor='let rfu of RecomendedData'>
+       
+                   <div class="content-rfu" *ngIf="categoryId == -1">
+                       <a [routerLink]="['/home-detail']" (click)="openDetail('',rfu, 'home')">
+                           <img class="more-image-rfu " src="{{rfu?.metadata?.IMG_RFU}}" (error)="setImage(rfu.categoryId,'RFU',$event)">
+                       </a>
+                       <div class=row>
+                           <div class="col-7">
+                               <p class="product-name" [innerHTML]="rfu?.productName" ngbPopover="{{rfu?.productName}}" placement="top"></p>
+                           </div>
+                           <div class="col-5">
+                               <!-- <button  type="button" style= "float:right !important; border-radius: 0 !important;" class="btn btn-large pricebtn" (click)="openPopup(recommendedList, rfu)">{{rfu?.productPrice}}</button> -->
+                               <!-- <div *ngIf="rfu?.productPrice > 0">
+                                   <button type="button" style="float:right !important;    WIDTH: 68PX !important; border-radius: 0 !important;" class=" pricebtn-rfu" (click)="onNavigate('', rfu);">{{rfu?.productPrice}}</button>
+                               </div>
+                               <div *ngIf="rfu?.productPrice.length < 2 &&  rfu.buttonBuy.length>0">
+                                   <button class="rfu-price marginRit25" (click)="onNavigate('', rfu)">{{rfu?.buttonBuy}}</button>
+                               </div>
+                               <div *ngIf="rfu?.productPrice.length >2">
+                                   <button class="rfu-price marginRit25"  (click)="openPopup('', rfu)">{{rfu?.productPrice}}</button>
+       
+                               </div> -->
+                               <div *ngIf="rfu?.productPrice.length < 2 &&  rfu.buttonBuy.length>0 && !rfu?.isRedirectToLink">
+                                   <button class="rfu-price marginRit25"  (click)="openPopup('', rfu,'')">{{rfu?.buttonBuy}}</button>
+                               </div>
+                               <div *ngIf="rfu?.productPrice.length >2 && !rfu?.isRedirectToLink">
+                                   <button   class="rfu-price marginRit25"  (click)="openPopup('', rfu,'')">{{rfu?.productPrice}}</button>
+                               </div>
+                               <div *ngIf="rfu?.isRedirectToLink"><button class="rfu-price marginRit25" (click)="onRFUNavigate(rfu)">{{rfu?.buttonBuy}}</button></div>
+                       </div>
+       
+                   </div>
+       
+       
+               </div>
+           </div>
+           <!--favourites-->
+           <h1 class="label-name" *ngIf="flow == 'home'">{{groupName}}</h1>
+           <div class="row"  *ngIf="flag == 'product'" >
+               <div class="col-2"  class="banner-image" *ngFor='let detbanner of morePageList'>
+                   <!-- threee -->
+                   <div class="content"  *ngIf="detbanner?.categoryId == 3 && flow == 'home'">
+                       <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+                           <img class="more-image" src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+                       </a>
+                       <div>
+                           <div>
+                               <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                           </div>
+       
+                       </div>
+                       <div>
+                           <div>
+                               <!--<div *ngIf="detbanner?.productPrice > 0">
+           <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+           </div>-->
+                               <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                               </div>
+                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                               </div> -->
+                               <div *ngIf="detbanner?.isRedirectToLink">
+                                   <button style="border-radius: 0 !important; "  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                 </div>
+                                 <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                   <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                   </div>
+                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                       <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                   </div>
+       
+                           </div>
+                       </div>
+       
+       
+       
+                   </div>
+       
+                   <!-- music -->
+                   <div class="content-music"  *ngIf="detbanner?.categoryId == 2 && flow == 'home'">
+                       <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+                           <img class="more-image-music" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+                       </a>
+                       <div>
+                           <div>
+                               <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                           </div>
+       
+                       </div>
+                       <div>
+                           <div>
+                               <!--<div *ngIf="detbanner?.productPrice > 0">
+           <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+           </div>-->
+                               <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                               </div>
+                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                               </div> -->
+                               <div *ngIf="detbanner?.isRedirectToLink">
+                                   <button style="border-radius: 0 !important; "  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                 </div>
+                                 <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                   <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                   </div>
+                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                       <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                   </div>
+       
+                           </div>
+                       </div>
+       
+       
+       
+                   </div>
+            <!-- game -->
+            <div class="content-game"  *ngIf="detbanner?.categoryId == 4 && flow == 'home' ">
+               <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+                   <img class="more-image-game" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+               </a>
+               <div>
+                   <div>
+                       <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                   </div>
+       
+               </div>
+               <div>
+                   <div>
+                       <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                       <!-- <div *ngIf="detbanner?.productPrice > 0">
+                           <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                       </div>
+                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                           <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                       </div> -->
+                       <div *ngIf="detbanner?.isRedirectToLink">
+                           <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                         </div>
+                         <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                             <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                           </div>
+                           <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                             <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                           </div>
+       
+                   </div>
+               </div>
+       
+       
+       
+           </div>
+       <!-- nc0 -->
+       <div class="content-nco"  *ngIf="detbanner?.categoryId == 5 && flow == 'home' ">
+           <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+               <img class="more-image-nco" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+           </a>
+           <div>
+               <div>
+                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+               </div>
+       
+           </div>
+           <div>
+               <div>
+                   <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                   <!-- <div *ngIf="detbanner?.productPrice > 0">
+                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn-co" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                   </div>
+                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn-co" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                   </div> -->
+                   <div *ngIf="detbanner?.isRedirectToLink">
+                       <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                     </div>
+                     <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                         <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                       </div>
+                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                         <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                       </div>
+                   
+       
+               </div>
+           </div>
+       
+       
+       
+       </div>
+       <!-- movie -->
+       <div class="content"     *ngIf="detbanner?.categoryId == 1 && flow == 'home' ">
+           <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+               <img class="more-image" src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+           </a>
+           <div>
+               <div>
+                   <p class="product-name"  [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+               </div>
+       
+           </div>
+           <div>
+               <div>
+                  
+               <div *ngIf="detbanner?.isRedirectToLink">
+                   <button type="button"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+               </div>
+               <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                   <button style="border-radius: 0 !important; background:transparent;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+               </div>
+               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                   <button style="border-radius: 0 !important; background:transparent;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+               </div>
+                  
+       
+               </div>
+           </div>
+       
+       
+       
+       </div>
+       <!-- home-->
+       
+       <div class="content"  *ngIf="detbanner?.categoryId == -1 && flow == 'home'">
+           <a [routerLink]="['/home-detail']" (click)="openDetail('', detbanner,'home')">
+       
+               <img class="more-image" src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+           </a>
+           <div>
+               <div>
+                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+               </div>
+       
+           </div>
+           <div>
+               <div>
+                   <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                   <!-- <div *ngIf="detbanner?.productPrice > 0">
+                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                   </div>
+                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                   </div> -->
+                   <div *ngIf="detbanner?.isRedirectToLink">
+                       <button style="border-radius: 0 !important; "  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                     </div>
+                     <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                       <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                       </div>
+                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                           <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                       </div>
+       
+               </div>
+           </div>
+       
+       
+       
+       </div>
+       
+               </div>
+               </div>
+               <!--three-->
+               <!--banner-->
+               <div class="row" *ngIf="flag == 'morebanner'">
+                   <div class="col-4"  class="banner-image"*ngFor='let detbanner of productBannerDetails'>
+                       <div class="content-top" *ngIf="categoryId == 3">
+                           <a [routerLink]="['/three-detail']" (click)="openDetail('',detbanner,'three')">
+                               <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}" onError="this.src='../../../assets/img/DefaultTriProduct1.png'" >
+                           </a>
+                           <div class="row">
+                                   <div class="col-8">
+                                           <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                   </div>
+                                   <div class="col-4">
+                                       
+                                                       <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                                               <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                           </div>
+                                                           <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                               <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                   
+                                                           </div> -->
+                                                           <div *ngIf="detbanner?.isRedirectToLink">
+                                                               <button style="border-radius: 0 !important; "  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                                             </div>
+                                                             <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                               <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                               </div>
+                                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                   <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                                               </div>
+                                   </div>
+                               </div>
+                       </div>
+       
+                   </div>
+       
+               </div>
+       
+               <!--favourites-->
+               <h1 class="label-name col-12 paddingLft50"  *ngIf="categoryId == 3 && flow !== 'home'">{{groupName}}</h1>
+               <div class="" *ngIf="flag == 'product'">
+                   <div class="col-12" class="banner-image floatLft" *ngFor='let detbanner of morePageList'>
+       
+                       <div class="content" *ngIf="categoryId == 3 && flow !== 'home'">
+                           <a [routerLink]="['/three-detail']" (click)="openDetail('', detbanner,'three')">
+       
+                               <img class="more-image" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" onError="this.src='../../../assets/img/DefaultTriProduct3.png'">
+                           </a>
+       
+                           <div>
+                               <div>
+                                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                               </div>
+       
+                           </div>
+                           <div>
+                               <div>
+                                   <!--<div *ngIf="detbanner?.productPrice > 0">
+               <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+               </div>-->
+                                   <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                                   </div>
+                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                       <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate(detail, detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                                   </div> -->
+                                   <div *ngIf="detbanner?.isRedirectToLink">
+                                       <button type="button"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                     </div>
+                                     <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                       <button type="button" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                       </div>
+                                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                         <button type="button"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                       </div>
+       
+                               </div>
+       
+                           </div>
+       
+       
+                       </div>
+                   </div>
+                   </div>
+                   <!--music-->
+                   <!--banner-->
+                   <div class="row" *ngIf="flag == 'morebanner'">
+                       <div class="col-4" class="banner-image" *ngFor='let detbanner of productBannerDetails'>
+                           <div class="content-top" *ngIf="categoryId == 2 ">
+                               <a [routerLink]="['/music-detail']" (click)="openDetail('',detbanner,'music')">
+                                   <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}"  onError="this.src='../../../assets/img/DefaultMusic1.png'">
+                               </a>
+                               <div class="row">
+                                       <div class="col-8">
+                                               <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                       </div>
+                                       <div class="col-4">
+       <!--                                     
+                                                           <div *ngIf="detbanner?.productPrice > 0">
+                                                                   <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                               </div>
+                                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                                   <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                       
+                                                               </div> -->
+                                                               <div *ngIf="detbanner?.isRedirectToLink">
+                                                                   <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                                                 </div>
+                                                                 <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                     <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                                   </div>
+                                                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                     <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                                                   </div>
+                                       </div>
+                                   </div>
+                           </div>
+       
+                       </div>
+       
+                   </div>
+                   <!--favourites-->
+                   <h1 class="label-name col-12 paddingLft50"  *ngIf="categoryId == 2 && flow !== 'home'">{{groupName}}</h1>
+                   <div class="" *ngIf="flag == 'product'">
+                       <div class="banner-image floatLft" *ngFor='let detbanner of morePageList'>
+       
+                           <div class="content-music" *ngIf="categoryId == 2 && flow !== 'home'">
+                               <a [routerLink]="['/music-detail']" (click)="openDetail('', detbanner,'music')">
+       
+                                   <img class="more-image-music" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" onError="this.src='../../../assets/img/DefaultMusic3.png'">
+                               </a>
+       
+                               <div>
+                                   <div>
+                                       <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                   </div>
+       
+                               </div>
+                               <div>
+                                   <div>
+                                       <!--<div *ngIf="detbanner?.productPrice > 0">
+               <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+               </div>-->
+                                       <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                           <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                                       </div>
+                                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                           <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate(detail, detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                                       </div> -->
+                                       <div *ngIf="detbanner?.isRedirectToLink">
+                                           <button type="button" class="btn btn-block pricebtn"(click)="onNavigate(detail, detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                         </div>
+                                         <div *ngIf="detbanner?.productPrice >= 0  && !detbanner?.isRedirectToLink">
+                                           <button type="button" class="btn btn-block pricebtn"(click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                                         </div>
+                                           <div *ngIf="detbanner?.productPrice == 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                               <button type="button" class="btn btn-block pricebtn" (click)="onNavigate(detail, detbanner);" >{{detbanner?.buttonBuy}}</button>
+                       
+                                           </div>
+       
+                                   </div>
+       
+                               </div>
+       
+       
+                           </div>
+                       </div>
+                   </div>
+                       <!--games->
+       
+                        <!topbanner-->
+                       <div class="row" *ngIf="flag == 'morebanner'">
+                           <div class="col-4" class="banner-image"  *ngFor='let detbanner of productBannerDetails'>
+                               <div class="content-top" *ngIf="categoryId == 4">
+                                   <a [routerLink]="['/game-detail']" (click)="openDetail('',detbanner,'game')">
+                                       <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}"  onError="this.src='../../../assets/img/DefaultGame1.png'">
+                                   </a>
+                                   <div class="row">
+                                           <div class="col-8">
+                                                   <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                           </div>
+                                           <div class="col-4">
+                                               
+                                                               <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                                                       <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                                   </div>
+                                                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                                       <button style="border-radius: 0 !important;    margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                           
+                                                                   </div> -->
+                                                                   <div *ngIf="detbanner?.isRedirectToLink">
+                                                                       <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                                                     </div>
+                                                                     <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                         <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                                       </div>
+                                                                       <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                         <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                                                       </div>
+                                           </div>
+                                       </div>
+                               </div>
+       
+                           </div>
+       
+                       </div>
+                       <!--favourites-->
+                       <h1 class="label-name"  *ngIf="categoryId == 4 && flow !== 'home'">{{groupName}}</h1>
+                       <div class="row" *ngIf="flag == 'product'">
+                           <div class="col-2" class="banner-image"  *ngFor='let detbanner of morePageList'>
+       
+                               <div class="content-game" *ngIf="categoryId == 4 && flow !== 'home'">
+                                   <a [routerLink]="['/game-detail']" (click)="openDetail('', detbanner,'game')">
+       
+                                       <img class="more-image-game" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" onError="this.src='../../../assets/img/DefaultGame3.png'">
+                                   </a>
+       
+                                   <div>
+                                       <div>
+                                           <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                       </div>
+       
+                                   </div>
+                                   <div>
+                                       <div>
+                                           <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                                           <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                               <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                                           </div>
+                                           <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                               <button style="border-radius: 0 !important;" class="btn btn-block pricebtn" (click)="onNavigate(detail, detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                                           </div> -->
+                                           <div *ngIf="detbanner?.isRedirectToLink">
+                                               <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                             </div>
+                                             <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                 <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                               </div>
+                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                 <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                               </div>
+       
+                                       </div>
+       
+                                   </div>
+       
+       
+                               </div>
+                           </div>
+                       </div>
+       
+                           <!--nco-->
+       
+                           <!--topbanner-->
+                           <div class="row" *ngIf="flag == 'morebanner'">
+                               <div class="col-4" class="banner-image"  *ngFor='let detbanner of productBannerDetails'>
+                                   <div class="content-top"  *ngIf="categoryId == 5">
+                                       <a [routerLink]="['/co-detail']" (click)="openDetail('',detbanner,'co')">
+                                           <img class="more-image-top" src="{{detbanner?.metadata?.IMG_BANNER}}"  onError="this.src='../../../assets/img/Default&CO1.png'">
+                                       </a>
+                                       <div class="row">
+                                               <div class="col-8">
+                                                       <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                               </div>
+                                               <div class="col-4">
+                                                   
+                                                       <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                                               <button style="border-radius: 0 !important;margin-left: 0px !important;padding: 0px 5px !important;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                           </div>
+                                                           <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                               <button style="border-radius: 0 !important;    margin-left: 0px !important;padding: 0px 5px !important;" class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                   
+                                                           </div> -->
+                                                           <div *ngIf="detbanner?.isRedirectToLink">
+                                                               <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                                             </div>
+                                                             <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                 <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                               </div>
+                                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                                 <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                                               </div>
+                                               </div>
+                                           </div>
+                                   </div>
+       
+                               </div>
+       
+                           </div>
+       
+                           <!--favourites-->
+                           <h1 class="label-name"  *ngIf="categoryId == 5 && flow !== 'home'">{{groupName}}</h1>
+                           <div class="row" *ngIf="flag == 'product'">
+                               <div class="col-2" class="banner-image"  *ngFor='let detbanner of morePageList'>
+       
+                                   <div class="content-nco" *ngIf="categoryId == 5 && flow !== 'home'">
+                                       <a [routerLink]="['/co-detail']" (click)="openDetail('', detbanner,'co')">
+       
+                                           <img class="more-image-nco" src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}"  onError="this.src='../../../assets/img/Default&CO3.png'">
+                                       </a>
+       
+                                       <div>
+                                           <div>
+                                               <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                                           </div>
+       
+                                       </div>
+                                       <div>
+                                           <div>
+                                               <!--<div *ngIf="detbanner?.productPrice > 0">
+       <button type="button" class="btn btn-block pricebtn" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+       </div>-->
+                                               <!-- <div *ngIf="detbanner?.productPrice > 0">
+                                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn-co" (click)="openPopup(detail, detbanner);">{{detbanner?.productPrice}}</button>
+                                               </div>
+                                               <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy">
+                                                   <button style="border-radius: 0 !important;" class="btn btn-block pricebtn-co" (click)="onNavigate(detail, detbanner);">{{detbanner?.buttonBuy}}</button>
+       
+                                               </div> -->
+                                               <div *ngIf="detbanner?.isRedirectToLink">
+                                                   <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>
+                                                 </div>
+                                                 <div *ngIf="detbanner?.productPrice >= 0 && !detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                     <button   style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;" class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                                                   </div>
+                                                   <div *ngIf="detbanner?.productPrice== 0 && detbanner.buttonBuy && !detbanner?.isRedirectToLink">
+                                                     <button  style="border-radius: 0 !important; margin-left: 0px; margin-top:13px;"  class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);" >{{detbanner?.buttonBuy}}</button>    
+                                                   </div>
+       
+                                           </div>
+       
+                                       </div>
+       
+       
+                                   </div>
+                               </div>
+       
+                           </div>
+       </div>

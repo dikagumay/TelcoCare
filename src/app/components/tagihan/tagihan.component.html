@@ -1,0 +1,26 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image">
+      <p class="pofile-text">{{staticText['Bill'] | translate: languageUse}}</p>
+    </div>
+    <div class="col-6 profilenew">
+        <img src="assets/img/back.png" routerLink="/profile" style="width: 50px; margin: -7px 0 0 -7px; ">
+      <ul class="detail-profile newulstyle">
+        <li><span><a class="boldFont"> {{staticText['Bill Summary'] | translate: languageUse}} <span class="floatRight">{{msisdn}} <span></span></span></a></span></li>
+        <ul style="list-style: none;-webkit-padding-start: 0px;" class="detail-profile " *ngIf="usertype === 'Hybrid'; else elseBlock">
+         <li *ngFor="let invoice of (invoiceData)?.billingList" (click)="tagihanSummmary(invoice.invoiceId)" ><span><a > {{invoice.invoiceDate}} <span class="floatRight" style="font-size:30px;">&rsaquo;<span></span></span></a></span></li>  
+        </ul>
+        <ng-template #elseBlock>
+          <ul style="list-style: none;-webkit-padding-start: 0px;" class="detail-profile " >
+            <li *ngFor="let invoice of (invoiceData)?.rptInvoiceSummarys" (click)="tagihanSummmary(invoice.id)" ><span><a > {{invoice.endperiod}} <span class="floatRight" style="font-size:30px;">&rsaquo;<span></span></span></a></span></li>  
+           </ul>
+        </ng-template>
+      </ul>
+    </div>
+    <div class="col-2">
+      </div>
+  </div>
+</div>

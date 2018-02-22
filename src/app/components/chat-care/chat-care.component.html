@@ -1,0 +1,36 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text"> {{staticText['Contact_Tri'] | translate: languageUse}}</p>
+    </div>
+    <!-- <div class="col-6">
+      <ul class="chat">
+         
+      </ul>
+      
+     
+    </div> -->
+    <div class="col-6 profilenew">
+        <img src="assets/img/back.png" routerLink="/contact-tri" style="width: 50px;">
+      <ul class="detail-profile newulstyle">
+        <li style="border: none;"><span><a class="headFont" > 3Care <span class="floatRight"><span></span></span></a></span></li>
+        <span>{{staticText['Welcome to 3Care, Please login.'] | translate: languageUse}}</span>
+        <form action="#" method="get" #f="ngForm" class="sidebar-form">
+          <div class="caption"> Tri Number </div>
+           <input type="text" class="chat-input login-input" [disabled]="true" name="usernumber" (keypress)="keyPress($event)" [(ngModel)]='usernumber' required #name="ngModel"/>
+           <div class="caption">{{staticText['Name'] | translate: languageUse}}  </div>
+              <input type="text" class=" chat-input login-input" name="user"  ngModel required  #user="ngModel"/>
+              <div class="caption"> {{staticText['Service Type'] | translate: languageUse}}</div>
+              <select class="login-input" name="service_Type"  [(ngModel)]="selectedSevice.id" required  #type="ngModel">
+               <option *ngFor="let type of serviceType" value= {{type.id}}>{{type.name | translate: languageUse}}</option>
+             </select>
+              <button type="button" class="btnsbmt btn-flat btnStyle" [ngClass]="{'disabledbtn' : isDisabled}" [disabled]="isDisabled" (click)="connectChat(f)">{{staticText['Submit'] | translate: languageUse}}</button>
+          </form>
+      </ul>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2" class="profilecol">
+        <img src="assets/img/btn-option-big.png" class="profile-image">
+        <p class="pofile-text">{{staticText.Settings | translate: languageUse}}</p>
+      </div>
+      <div class="col-6 profilenew">
+        <ul class="detail-profile newulstyle" style="margin-top: 13%;">
+          <li style="display: inline-flex; border: none;">
+            <span style="display: table;    margin-right: 50px;">
+              {{staticText.Language | translate: languageUse}}:</span>
+            <input type="text" class="login-input" name="language"
+              [(ngModel)]="language" data-toggle="modal" data-target="#myModal" /> </li>
+        </ul>
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+ 
+  <div id="myModal" class="flatmodal modal">
+    <!-- Modal content -->
+    <div class="flatmodal-content modelHeight">
+      <span class="close" data-dismiss="modal">&times;</span>
+      <p class="header">{{staticText['Select Language'] | translate: languageUse}}</p>
+      <table>
+        <tr *ngFor='let setting of settings'>
+          <!-- <td>Indonesia</td> -->
+          <td>
+              {{setting?.language}}
+          </td>
+          <td>
+            <input name="radio" type="radio" value="{{setting?.language}}" [(ngModel)]="selectedLanguage">
+          </td>
+        </tr>
+        <!-- <tr>
+          <td>English</td>
+          <td>
+            <input type="radio"  name="value" value="English">
+          </td>
+        </tr> -->
+      </table>
+      <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal"  (click)="confirmSetting()" >Save</button>    
+    </div>
+  </div>
+  
+  <div id="confirmModal" class="flatmodal modal">
+      <!-- Modal content -->
+      <div class="flatmodal-content modelHeight confirpop">
+        <p>{{staticText['Are you sure want to change the Language?'] | translate: languageUse}}</p>
+  
+        <!-- <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn"  data-toggle="modal" data-target="#settingchageModal" data-dismiss="modal" (click)="selectLanguage()" >Yes</button>    
+        <button style="border-radius: 0 !important; "   class="btn btn-block pricebtn" data-dismiss="modal" (click)="retainLanguage()" >N0</button>  -->
+        <div class="no"><button data-dismiss="modal"  (click)="retainLanguage()" >{{staticText['No'] | translate: languageUse}}</button></div>
+        <div class="yes"><button data-toggle="modal" data-target="#settingchageModal" data-dismiss="modal" (click)="selectLanguage()">{{staticText['Yes'] | translate: languageUse}}</button></div>
+      </div>
+  </div>
+  
+  <div id='settingchageModal' class="flatmodal modal confirpop">
+      <!-- Modal content -->
+      <div class="flatmodal-content modelHeight">
+        <p>{{staticText['Langauge changed successfully'] | translate: languageUse}}</p>  
+        <div class="yes ok"><button data-dismiss="modal">OK</button></div>
+      </div>
+  </div>
+</div>

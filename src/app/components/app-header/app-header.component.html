@@ -1,0 +1,118 @@
+<header class="main-header" style="text-align: center;">
+  <!-- Logo -->
+  <div class="logo">
+    <a class="sidebar-toggle" #hamburgerMenu (click)='openslide()' data-toggle="offcanvas" role="button">
+      <img class="sidebar_image" src="assets/img/ic_profile_text.png">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="badge bg-green counttxt">{{notificationCount}}</span>
+    </a>
+    <a>
+      <img class="logo-bima" src="{{themeUrl}}" onError="this.src='../../../assets/img/logo-bima.png'"  (click)="changeheader('', 'home')">
+    </a>
+  </div>
+  <!-- Header Navbar: style can be found in header.less -->
+
+  <nav class="navbar navbar-static-top" role="navigation">
+
+    <!-- Add RouterLink Click Here remove href="" Causes Unexpected Behaviour -->
+    <ul class="navbar-2">
+      <li>
+        <a>
+          <img class="logo-menu" [src]="movieicon == 'three' ? 'assets/img/ic_menu_product.png' : 'assets/img/ic_menu_product_Not_Selected.png'" (click)="changeheader('three','three')">
+        </a>
+      </li>
+      <li class="musicWidth">
+        <a>
+          <img class="logo-menu" [src]="movieicon == 'music' ? 'assets/img/ic_menu_music.png' : 'assets/img/ic_menu_music_Not_Selected.png'" (click)="changeheader('music','music')">
+        </a>
+      </li>
+      <li>
+        <a>
+          <img class="logo-menu" [src]="movieicon == 'movie' ? 'assets/img/ic_menu_movie.png' : 'assets/img/ic_menu_movie_Not_Selected.png'" (click)="changeheader('movie','movie')">
+        </a>
+      </li>
+      <li *ngIf="!isMac">
+        <a>
+          <img class="logo-menu" [src]="movieicon == 'game' ? 'assets/img/ic_menu_game.png' : 'assets/img/ic_menu_game_Not_Selected.png'"
+            (click)="changeheader('game', 'game')">
+        </a>
+      </li>
+      <li>
+        <a>
+          <img class="logo-menu" [src]="movieicon == 'co' ? 'assets/img/ic_nco.png' : 'assets/img/ic_nco_Not_Selected.png'" (click)="changeheader('co', 'co')">
+        </a>
+      </li>
+    </ul>
+
+
+    <form action="#" method="get" class="sidebar-form">
+      <div class="search-menu searchbox">
+        <i (click)='search()' class="fa fa-search"></i>
+        <input type="text" (keyup.enter)="search()" name="q" [(ngModel)]='keyword' placeholder="Cari" />
+      </div>
+    </form>
+
+  </nav>
+
+</header>
+
+<aside class="main-sidebar" id="slidebar" #sidemenu [class.showClass]="showSidebar" [class.hideClass]="!showSidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <a class="close-toggle" (click)='closeslide()'></a>
+
+
+  <section class="sidebar">
+
+    <ul class="sidebar-menu">
+      <li  *ngIf="!loginStatus" (click)="changeheader('home','login')">
+        <a>
+          <img src="assets/img/btn-login.png" /> Login </a>
+      </li>
+      <li  (click)="changeheader('home','home')">
+        <a>
+          <img src="assets/img/btn-home.png" /> {{staticText.Home | translate: languageUse}}
+          <span>&rsaquo;</span>
+        </a>
+      </li>
+      <li  *ngIf="loginStatus" (click)="changeheader('home', 'profile')">
+        <a>
+          <img src="assets/img/btn-user.png" /> {{staticText.Profile | translate: languageUse}}
+          <span>
+
+            &rsaquo;</span>
+        </a>
+      </li>
+      <li  (click)="changeheader('home','contact-tri')">
+        <a>
+          <img src="assets/img/btn-user2.png" /> {{staticText['Contact Tri'] | translate: languageUse}}
+          <span>
+
+            &rsaquo;</span>
+        </a>
+      </li>
+      <li (click)="changeheader('home', 'settings')">
+        <a>
+          <img src="assets/img/btn-option.png" /> {{staticText.Settings | translate: languageUse}}
+          <span>&rsaquo;</span>
+        </a>
+      </li>
+      <li *ngIf="loginStatus" (click)="changeheader('home', 'notification')">
+        <a>
+          <img src="assets/img/btn-notif.png" /> {{staticText.Notification | translate: languageUse}}
+          <span>
+            <span class="badge bg-green counttxt menu-badge">{{notificationCount}}</span>
+            &rsaquo;</span>
+        </a>
+      </li>
+      <li *ngIf="loginStatus" (click)="logOut();changeheader('home','login')">
+        <a>
+          <img src="assets/img/btn-logout.png" />  {{staticText['Log Out'] | translate: languageUse}}
+          <span>&rsaquo;</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+  </section>
+  <!-- /.sidebar -->
+</aside>

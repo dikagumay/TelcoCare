@@ -1,0 +1,19 @@
+.floatRight{
+    float: right;
+}
+.boldFont{
+    font-weight: bold;
+}
+.payButton{
+    display: inline;
+    float: right !important;
+}
+.listpadding{
+    padding-top: 5px;
+}
+.tableClass{
+        /* -webkit-padding-start: 0px; */
+        width: 100%;
+        font-weight: 600;
+        background-color: lightgrey;
+}

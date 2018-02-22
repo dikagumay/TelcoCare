@@ -1,0 +1,18 @@
+.profilecol {
+    padding-top: 65px;
+    margin-left: 25%;
+}
+.profile-image {
+    width: 100px !important;
+}
+.pofile-text {
+    text-align: center;
+    word-wrap: break-word;
+    width: 100px;
+}
+.profilenew {
+    margin-top: 60px;
+    margin-left: 2%;
+}
+.textRit{ text-align: right;}
+.width95{max-width: 95%;}

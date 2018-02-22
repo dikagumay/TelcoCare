@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <p class="modal-title pull-left">{{modalDataObj?.title}}</p>
+</div>
+<div class="modal-body">
+  <p>{{modalDataObj?.msg}}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="emitEv('ok')">Ok</button>
+  <button type="button" class="btn btn-default" (click)="emitEv('cancel')">Cancel</button>
+</div>

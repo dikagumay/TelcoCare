@@ -1,0 +1,80 @@
+.modal-title
+{
+color: #00A7A4;
+margin-bottom: 40px;
+font-size: 14px;
+line-height: 1.42857143;
+border-bottom: 1px solid #e9ecef;
+font-weight: bold;
+}
+.modal-header{
+    font-weight: bold;
+    color: #00A7A4;
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+.pricebtn{
+    margin-top: 2px;
+    color: #00A7A4;
+    background-color: #fff;
+    border: 1px solid #00A7A4;
+    padding: 6px 15px;
+    margin-left: 15px;
+    float: right;
+    min-width:70px;
+    
+    }
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100000 !important;
+      }
+      .container {
+        width: 26em;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-left: 0px;
+    }
+    
+        table, th, td {
+            /* border: 1px solid black; */
+            font-weight: normal !important;
+        }
+        
+        /* th, td {
+            padding: .5em 1em;
+        } */
+.customWidth{
+    width: 100%;
+}
+.tableHeight{
+    height: 50px;
+    color:#5a595e;
+    font-size: 14px;
+}
+.borderBottom{
+    border-bottom: 1px solid;
+}
+.borderTop0{border-top:0px;}
+.fontclass{
+    font-size: 18px;
+    margin-top: 12px;
+    margin-left: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
+}
+.payment .modal-header, .payment .modal-title{
+    border: none !important; 
+}
+.payment .modal-header{
+    padding-left:36px !important;
+}
+.payment .modal-body{
+    margin-top: -53px !important;
+}
+.payment button.close{
+    padding-right: 26px !important;
+}

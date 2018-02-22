@@ -1,0 +1,56 @@
+.modelHeight{
+    min-height: 200px !important;
+}
+.topMargin{
+    margin-top: 10%;
+}
+.imageWidth{
+   width: 11vw;
+    height: 16vh;
+    margin-left: 43%;
+    margin-top: 42%;
+}
+.content{
+        margin-top: 5%;
+}
+.setting-text{
+margin-left: 43%;
+}
+.no, .yes{
+    width:50%;
+    padding: 15px;
+    float: left;
+}
+.no button, .yes button{
+    width: 100%;    
+    border:0px;
+    color: #fff;
+    font-size: 14px;
+    height: 35px;
+}
+.no button{background-color:red;}
+.yes button{background-color:#00A7A4;}
+.confirpop p{
+    text-align: center;
+    padding-top: 30px;
+    font-size: 14px;
+}
+.ok{
+    margin:0 auto;
+    float: none;
+}
+
+@media only screen  /* ipad*/
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+   
+.content{
+     margin-top: 23%;
+     font-size: 14px;
+
+}
+.setting-text{
+margin-left: 43%;
+font-size: 14px;
+}
+}

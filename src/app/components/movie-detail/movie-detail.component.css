@@ -1,0 +1,223 @@
+.banner-img{
+    width: 100% !important;
+    padding: 0% !important;
+    height: auto;
+    max-height: 301px;
+}
+.potrait-img{
+    width: 30vw;height: 40vw;padding: 0% !important;margin-top: 30px;
+}
+.rating {
+    font-weight: bold;
+    font-size: 14px;
+    color: #666666;
+}
+.label-desc{
+    font-weight: bold;
+    font-size: 14px;
+    color: #00A7A4;
+    margin-bottom: 0;
+    padding: 10px 0!important;
+    
+}
+.detail-button{
+    float:right;
+    color: #00A7A4;
+    border: 1px solid #00A7A4;
+    background-color:transparent;
+    margin-top: 23px !important;
+    min-width:70px;
+    height: 30px;
+    line-height: 27px;
+}
+.product-howto{
+    
+    font-weight: 400;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    color: #b8b9bb;
+    /* line-height: 1.42857143; */
+}
+
+.bordertop{
+    border-top: 1px solid #808080!important;
+    margin-left: 0% !important;
+    margin-top: 2px;
+    width: 100vw;
+}
+.detail-content{
+    width: 100%;
+    font-size: 14px;
+    display: block;
+    color: #b8b9bb;
+/* padding-left: 120px; */      
+
+}
+
+.product-desc{
+    
+    font-weight: 400;
+    font-size: 14px;
+    
+}
+.showmore{
+    float: left; 
+    color: #00A7A4;
+    font-weight: 600;
+    }
+    .showless{
+        float: left;margin-top: -6px;color: #00A7A4;
+        font-weight: 600;
+    }
+    .product-star{
+        width: 70px;
+        margin-bottom: 20px !important;
+    }
+
+.span-text{
+    padding-right: 5px !important;
+}
+
+.playdetailicon{
+    position: absolute;
+    width:10vw;
+    top:26%;
+    left:38%;
+}
+.tableTitle{
+    min-width: 100px;
+    float: left;  
+}
+.titleLst{
+    padding:7px 0;
+    border-bottom: 1px solid #808080;
+    color: #b8b9bb;
+}
+.tableparner{
+    max-width:100%;
+}
+.priceDiv{
+    overflow: auto;
+    display: grid;
+}
+.boldTxt{ font-weight: bold;}
+.priceDiv ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    clear: both;
+    white-space: nowrap;
+    display: flex;
+    width: 100%;    
+    border-bottom: 1px solid #808080;
+}
+.priceDiv ul li{
+    font-size: 14px;
+    color: #b8b9bb;
+    float:left;
+    padding:7px 0;
+    min-width: 100px;
+}
+.border2{ border-top: 2px solid #808080!important;}
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .detail-button{ line-height: 32px;}
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 640px) {  
+
+.detail-button{
+    padding: 4px 6px 3px 6px;
+    }
+    .playdetailicon{width:22vw;} 
+}
+/* Galaxy S5 portrait and landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+      .span-text{
+            padding-right: 25px;
+    }
+      
+  }
+
+
+  /* Galaxy S5 portrait and landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+.span-text{
+            padding-right: 58px;
+    }
+  }
+
+   /*iphone-6*/
+@media only screen  
+and (min-device-width : 375px) 
+and (max-device-width : 667px) { 
+    .span-text{
+    
+    padding-right: 71px;
+    }
+}
+  /*iphone 6 plus and nexus 6p and nexus 5X*/
+@media only screen and (min-device-width: 412px) and (max-device-width: 736px){ 
+    .span-text{
+    
+    padding-right: 96px;
+    }
+    }
+
+    @media only screen /*ipadpro*/
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+      .detail-content{
+        width: 50vw;
+        font-size: 14px;
+    /* padding-left: 120px; */
+   
+}
+.product-howto{
+    font-weight: normal;font-size: 14px;
+}
+  }
+  
+  .proDetail {
+    max-width: 600px;
+    margin:0 auto;
+}
+  .proDetail h1{
+      font-weight: bold;
+      font-size: 18px;
+      color: #b8b9bb;
+      
+      padding-top: 15px;
+  }
+  .proDetail h2{
+      font-size: 14px;
+      
+  }
+  .padding-top{
+      padding-top: 12px!important;
+  }
+  .width100{
+      width: 100%;
+  }
+  .tableparner td{
+      padding-right: 0px!important;
+      color: #b8b9bb;
+  }
+  .grayBg{
+      width:100%; 
+      background:#343432;
+      min-height: 100%;
+    }
+p{color: #b8b9bb;}
+
+
+
+
+   

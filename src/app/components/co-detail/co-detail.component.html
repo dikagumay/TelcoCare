@@ -1,0 +1,75 @@
+<div class="container"> 
+    
+    <div class="proDetail">
+      <img src="{{detailList?.metadata?.IMG_BANNER_BIG}}" class="banner-img" onError="this.src='../../../assets/img/DefaultGame1.png'">
+    
+      <div class="row">
+          <div class="col-7">
+            <div class="rating" style="display: inline-block;">
+              <h1>{{detailList?.productName}}</h1>                
+                  <img class="product-star" src="../../../assets/img/{{rating}}.png">                
+            </div>
+
+          </div>
+          <div class="col-5">
+              <!-- <div *ngIf="!detailList.isRedirectToLink">
+                  <button class="detail-button" (click)="openPopup(detailList);">Rp.{{detailList?.productPrice}}</button>
+              </div>
+              <div *ngIf="detailList?.productPrice > 0 && !detailList.buttonBuy && detailList.isRedirectToLink">
+                  <button class="detail-button" (click)="openPopup(detailList);">Rp.{{detailList?.productPrice}}</button>
+                </div>
+                <div *ngIf="detailList?.productPrice == 0 && detailList.buttonBuy && detailList.isRedirectToLink">
+                  <button class="detail-button" (click)="onNavigate();">{{detailList.buttonBuy}}</button>
+      
+                </div> -->
+                <div *ngIf=" detailList?.buttonBuy && detailList.isRedirectToLink ">
+                  <button class="detail-button"  (click)="onNavigate();">{{detailList?.buttonBuy}}</button>
+                </div>
+                <div *ngIf=" !detailList?.buttonBuy  && detailList?.productPrice && detailList.isRedirectToLink ">
+                  <button class="detail-button"  (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+                </div>
+                <div *ngIf="!detailList?.buttonBuy && detailList?.productPrice && !detailList.isRedirectToLink ">
+                  <button class="detail-button" (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+                </div>
+                <div *ngIf="detailList?.buttonBuy && detailList?.productPrice && !detailList.isRedirectToLink ">
+                  <button class="detail-button" (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+                </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin:0;">
+          <h2 class="label-desc bordertop padding-top">{{detailList?.labelDescription}}</h2>
+          <!-- <p [innerHTML]="detailList.productDescription" class=" detail-content"></p> -->
+          <div *ngIf="detailList.productDescription?.length > 200">
+            <div *ngIf="showmore">
+              <p [innerHTML]="detailList?.productDescription |slice:0:200" style="float: left;" class=" detail-content"></p>
+              <p style="float: left;color: #00A7A4;" (click)="onshowmore()">{{staticText['...More'] | translate: languageUse}}
+                <p>
+    
+            </div>
+            <div *ngIf="!showmore">
+              <p [innerHTML]="detailList?.productDescription " class=" detail-content"></p>
+              <p style="float: left;margin-top: -6px;color: #00A7A4;" (click)="onshowless()"> {{staticText['...Less'] | translate: languageUse}}</p>
+            </div>
+          </div>
+          <div *ngIf="detailList.productDescription?.length < 200">
+            <p [innerHTML]="detailList?.productDescription" style="float: left;" class=" detail-content"></p>
+          </div>
+        
+  
+        </div>
+        
+        <div class="row" style="margin: 0;">
+               
+        <div *ngIf= "detailList?.productHowTo" class="bordertop" > 
+          <p style="color: #00A7A4 !important;font-weight: bold;font-size: 14px;margin-top: 11px !important;" [innerHTML] = "detailList.labelHowTo"></p>
+          <p [innerHTML] = "detailList.productHowTo" class=" product-howto "></p>
+       </div>
+        <p> {{detailList?.productPricing}}</p>
+        </div>
+    
+    
+      </div>
+    
+    </div>
+    

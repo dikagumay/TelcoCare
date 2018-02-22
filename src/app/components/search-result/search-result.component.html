@@ -1,0 +1,58 @@
+<div class="lft12">
+    <div class="col-md-12 notFoundText" style="text-align:center;" *ngIf="showmsg else falsyTemp">
+        <!-- <img src="assets/img/notfound.png" class="profile-image"> -->
+        <h1 style="margin: 0 auto;">{{staticText['Product not found'] | translate: languageUse}}</h1>
+    </div>
+  
+  <ng-template #falsyTemp>
+    
+    <div class="content-top" *ngFor="let search of searchData">
+        <img class="more-image-top" *ngIf="search?.categoryId === 1" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/DefaultMovie1.png'">
+        <img class="more-image-top" *ngIf="search?.categoryId === 2" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/DefaultMusic1.png'">
+        <img class="more-image-top" *ngIf="search?.categoryId === 3" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/DefaultTriProduct1.png'">
+        <img class="more-image-top" *ngIf="search?.categoryId === 4" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/DefaultGame1.png'">
+        <img class="more-image-top" *ngIf="search?.categoryId === 5" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/Default&CO1.png'">
+        <img class="more-image-top" *ngIf="search?.categoryId !== 1 && search?.categoryId !== 2 && search?.categoryId !== 3 && search?.categoryId !== 4 && search?.categoryId !== 5" id={{search?.productId}} src="{{search?.metadata?.IMG_BANNER}}" (click)="openProduct($event)" onError="this.src='../../../assets/img/DefaultMovie1.png'">
+        
+        <div class="row">
+            <div class="col-7">
+                <p [innerHTML]="search?.productName" class="product-name"></p>
+            </div>
+            <div class="col-5" >
+                <!-- <button class="btn btn-block pricebtn" (click)="onNavigate(search?.redirectLink)" *ngIf="search?.productPrice === '0'; else priceAvalable" >{{search?.buttonBuy}}</button> -->
+                <!-- <div   *ngIf="search?.isRedirectToLink" >
+                    <button class="btn btn-block pricebtn"  (click)="onNavigate(search?.redirectLink)">{{search?.buttonBuy}}</button>
+                </div>
+                <div   *ngIf="search?.productPrice >= 0  && !search?.isRedirectToLink" >
+                        
+                            <button class="btn btn-block pricebtn"  (click)="openPopup(search);">{{search?.productPrice}}</button>       
+                </div> 
+                <div  *ngIf="search.buttonBuy && !search?.isRedirectToLink" >
+                        
+                            <button class="btn btn-block pricebtn"  (click)="onNavigate(search?.redirectLink)">{{search?.buttonBuy}}</button>       
+                </div>  -->
+                <div *ngIf=" search?.buttonBuy && search.isRedirectToLink ">
+                    <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate(search?.redirectLink);">{{search?.buttonBuy}}</button>
+                </div>
+                <div *ngIf=" !search?.buttonBuy  && search?.productPrice && search.isRedirectToLink ">
+                    <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup(search);">{{search?.productPrice}}</button>
+                </div>
+                <div *ngIf="!search?.buttonBuy && search?.productPrice && !search.isRedirectToLink ">
+                    <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup(search);">{{search?.productPrice}}</button>
+                </div>
+                <div *ngIf="search?.buttonBuy && search?.productPrice && !search.isRedirectToLink ">
+                    <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup(search);">{{search?.productPrice}}</button>
+                </div>
+        
+            </div>                
+        </div>
+        <ng-template #priceAvalable>
+            <div class="">
+                <button class="btn btn-block pricebtn" (click)="openPopup(search);">{{search?.productPrice}}</button>
+            </div>
+        </ng-template>
+      </div>
+  </ng-template>
+</div>
+   
+   

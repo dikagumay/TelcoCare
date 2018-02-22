@@ -1,0 +1,145 @@
+<div class="container-fluid" class="payment">
+
+  <div class="row ">
+
+    <div class="col-10 modal-header">
+
+      <h4 class="modal-title pull-left" *ngIf="modalList.paymentMatrix[1] == 0">{{staticText['Confirmation, you will purchase.'] | translate: languageUse}}</h4>
+
+      <h4 class="modal-title pull-left" *ngIf="modalList.paymentMatrix[1] == 1">{{modalList?.productName}}</h4>
+
+    </div>
+
+    <div class="col-2">
+
+      <button type="button" class="close pull-right" style="margin-top: 18px;" aria-label="Close" (click)="closepopup();">X</button>
+
+    </div>
+
+  </div>
+
+
+  <div class="modal-body">
+
+    <div *ngIf="modalList.paymentMatrix[1] == 0">
+
+      <table style="width: 100%;">
+
+        <tr class="tableHeight">
+
+          <td>
+
+            {{staticText['Package Name'] | translate: languageUse}}:
+
+          </td>
+
+          <td>{{modalList?.productName}}</td>
+
+        </tr>
+
+        <tr class="tableHeight">
+          <td>Price :</td>
+          <td>{{modalList?.productPrice}}</td>
+
+        </tr>
+        <tr *ngFor='let payments of modalList?.paymentList' class="tableHeight borderBottom">
+          <td>
+              <img *ngIf=" payments?.methodCode == '00' " src="../../../../assets/img/logo-tri.png">
+            <img *ngIf=" payments?.methodCode == '01' " src="../../../../assets/img/mastercard.png">
+            <img *ngIf=" payments?.methodCode == '02' " src="../../../../assets/img/visa.png">
+          </td>
+          <td>{{payments?.methodName}}</td>
+          <td><input name="radio" type="radio" value="{{payments?.methodCode}}" [(ngModel)]="selectedMethod"></td>
+        </tr>
+
+        <!-- <tr>
+          <td *ngFor='let payments of modalList?.paymentList' style="display:block;">
+            <label class="custom-control custom-radio" style="width: 100%;">
+             <div class="row" style="width: 100%;">
+                <div class="col-4">
+                  <img *ngIf=" payments?.methodCode == '01' " src="../../../../assets/img/mastercard.png">
+                  <img *ngIf=" payments?.methodCode == '02' " src="../../../../assets/img/visa.png">
+                </div>
+                <div class="col-4">
+                  <div class="custom-control-description" style="    margin-left: 32px;">{{payments?.methodName}}</div>
+                </div>
+                <div class="col-4">
+                  <input name="radio" type="radio" value="{{payments?.methodCode}}" [(ngModel)]="selectedMethod">
+                  
+                </div>
+              </div>
+            </label>
+          </td>
+        </tr> -->
+
+        
+        </table>
+
+    </div>
+
+
+
+    <div class="container customWidth">
+      <div *ngIf="modalList.paymentMatrix[1] == 1">
+        <p style="border-bottom: 1px solid;" class="fontclass">{{staticText['Choose your service'] | translate: languageUse}}</p>
+      
+      <table class="fontclass">
+        <thead style="border-bottom: 1px solid;">
+          <tr>
+            <th style="font-weight:bold!important">
+              <p>{{staticText['Provider'] | translate: languageUse}}</p>
+            </th>
+            <th style="padding-left: 24px;font-size: 104%; display: flex; font-weight:bold!important" *ngFor='let vendors of modalList?.vendorList'>
+              <div *ngFor='let prices of vendors.priceList' style="display:inline;float:left; width:130px">
+                {{prices?.planName}} &nbsp;
+
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody style="border-bottom: 1px solid;">
+          <tr>
+            <td *ngFor='let vendors of modalList?.vendorList' style="font-weight:bold!important">
+              <p> {{vendors?.vendorName}}</p>
+            </td>
+            <td *ngFor='let vendors of modalList?.vendorList;' style="padding-left:16px;">                
+              <label class="custom-control custom-radio" style="font-weight:bold!important; width:130px; margin-right:0px; margin-left:3px;" *ngFor='let prices of vendors.priceList; let i=index;'>
+              <input id="radio1" name="radio" type="radio"  class="custom-control-input" value="{{prices?.price}}" [(ngModel)]="selectedPrice">
+                <span class="custom-control-indicator "></span>
+                <span class="custom-control-description">{{prices?.price}}</span>
+              </label>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+    <!--Modal Footer -->
+
+    <div class="modal-footer row borderTop0">
+
+
+      <div class="col-12" *ngIf="modalList.paymentMatrix[1] == 0">
+
+        <button class="btn btn-small pricebtn" (click)="purchasePlan()"> {{staticText['Buy'] | translate: languageUse}} </button>
+
+      </div>
+
+      <div class="col-12" *ngIf="modalList.paymentMatrix[1] == 1">
+
+        <button class="btn btn-small pricebtn" (click)="openbuyModal()"> OK </button>
+
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>

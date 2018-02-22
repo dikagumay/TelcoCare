@@ -1,0 +1,38 @@
+<div class="container-fluid" [ngClass]="categoryId == 1? 'movieBg' : 'threeBg'">
+  <div class="">
+      <h1 class="label-name"  [ngClass]="categoryId == 1? 'movieMorehd' : ''">{{groupName}}</h1>
+  </div>
+  <div class="moreMarLRMinas">      
+      <div class="banner-image swiper-slide-box floatLft" *ngFor='let detbanner of morePageList'>
+          <div class="content" [ngClass]="categoryId == 1? 'movieMore' : ''">
+              <a  (click)="openDetail('', detbanner)">
+
+                  <img class="product-image" src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" (error)="this.src = setImage(categoryId,$event)">              </a>
+
+              <div class="row">
+                  <div class="col-12">
+                      <p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+                  </div>
+
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                    <div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+                        <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+                    </div>
+                    <div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+                        <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                    </div>
+                    <div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+                        <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                    </div>
+                    <div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+                        <button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+                    </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>    
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.floatRight{
+    float: right;
+    margin-left: 3px;
+}
+.imageWidth{
+    width: 125px !important;
+}
+.tri-image{
+    margin-top: 187px;
+    float : left;
+}

@@ -1,0 +1,58 @@
+<div class="container-fluid" style="margin-top:20px;">
+    <!-- Header div put image also-->
+    <div class="row">
+      <div class="profilecol">
+          <img class="profile-image" src="assets/img/user.png">
+          <p class="pofile-text">Bill</p>
+      </div>
+      <div class="col-5 profilenew">
+      <div class="row">
+      <div class="col-12">
+          <img src="assets/img/back.png" routerLink="/billing" style="width: 50px; margin: -7px 0 20px -7px;">
+        <p style="font-weight:bold;">{{staticText.Payment | translate: languageUse}}</p>
+      </div>
+    </div>
+    
+    <!-- Product Detail -->
+    
+    <div class="row">
+      <div class="col-12 width95">
+        <p>{{staticText['Confirmation, you will purchase.'] | translate: languageUse}}</p>
+        <hr/>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+          <p style="font-weight:bold;">{{staticText['Package Name'] | translate: languageUse}}</p>
+        </div>
+        <div class="col-5">
+            <p>:&nbsp;{{packagename}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+          <p style="font-weight:bold;">{{staticText.Price | translate: languageUse}}</p>
+        </div>
+        <div class="col-5">
+            <p>: {{this.packageObj.price}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+          <p style="font-weight:bold;">{{staticText['Payment Method'] | translate: languageUse}}</p>
+        </div>
+        <div class="col-5">
+            <p>: {{this.methodname}}</p>
+        </div>
+        <hr/>
+        <p class="col-12">{{staticText['Click Buy, if you want to use one-time transaction. or click Next, if you will/have registered your credit card.'] | translate: languageUse}}</p>
+    </div>
+
+    <div class="row">
+       <div class="col-12">
+        <button type="button" class="btn-flat btnStyle" (click)="buyPackage()" style="display: block; float:left;" > {{staticText['Buy'] | translate: languageUse}}</button>
+       </div>   
+      </div>
+  </div>
+</div>
+</div>

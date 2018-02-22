@@ -1,0 +1,12 @@
+<div class="modal-header" >
+  <h4 class="modal-title pull-left">{{staticText['Sorry'] | translate: languageUse}}</h4>
+</div>
+<!-- Modal Body -->
+<div class="modal-body">
+   <p>{{staticText['Please login using Tri number'] | translate: languageUse}}</p>
+</div>
+ <!--Modal Footer -->
+ <div class="modal-footer">
+   <a [routerLink] = "" (click)="closeModal();">NO</a>
+   <a style="padding-left:5px;" [routerLink] = "['/login']" (click)="closeModal();">YES</a>
+ </div>

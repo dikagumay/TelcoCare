@@ -1,0 +1,24 @@
+.floatRight{
+    float: right;
+}
+.imageWidth{
+    width: 11vw;
+    height: 16vh;
+    margin-left: 43%;
+    margin-top: 42%;
+}
+.noti-bg-profile{
+    padding-left: 40% !important;
+}
+.noti-bg-profile > .profile-user{
+    width: 800px !important;
+}
+.unreadNoti{
+font-weight: bold;
+}
+.readNoti{
+    font-weight: normal;
+}
+.deleteNoti{
+    display: none;
+}

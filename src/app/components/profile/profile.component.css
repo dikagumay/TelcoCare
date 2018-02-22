@@ -1,0 +1,56 @@
+.floatRight{
+    float: right;
+    
+}
+.liBullets{
+        list-style-type: none !important; 
+}
+.content_box{
+background: #dcdcdc !important;
+margin: 10px 15px 0px 15px !important;
+padding: 5px 15px 0px 15px !important;
+}
+.topPaddong{
+    padding-top: 10px !important;
+}
+.leftPadding{
+    padding-left: 10px !important;
+}
+.leftrightPadding{
+    padding: 0px 5px 0px 5px;
+}
+.buttonStyle{
+    width: 80% !important;
+    margin: 0 10% 0 10% !important;
+    /* height: 30px; */
+    border: none !important;
+    background-color: #00A7A4;
+}
+paddingList{
+    padding-bottom: 10px !important;
+}
+
+/* .profilecol{
+    padding-top: 15%; margin-left: 145px;
+} */
+x
+.colprofile{
+    margin-top: 15%; margin-left: 0%;
+}
+.profilLstHit{
+    height:44px;
+    margin-top:-9px;
+}
+.marginTop-5{ margin-top: -10px}
+.profilehead{
+    font-weight: bold;
+}
+.profilehead img{
+    width: 24px;
+    padding-right: 8px;
+    box-sizing: content-box;
+}
+.profidata{
+    font-weight: normal;
+}
+.refresh{width:100%; border:1px solid #fff; display:block;}

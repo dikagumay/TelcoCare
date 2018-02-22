@@ -1,0 +1,21 @@
+{
+  "/api": {
+    "target": "http://10.64.18.249:8080/api/v1/",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "secure": false
+  },
+    "/chat": {
+      "target": "http://180.214.233.217:8081",
+      "pathRewrite": {
+        "^/chat": ""
+      },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+
+
+}
+

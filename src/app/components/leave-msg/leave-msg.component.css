@@ -1,0 +1,41 @@
+.imageWidth{
+   width: 11vw;
+    height: 16vh;
+    margin-left: 43%;
+    margin-top: 42%;
+}
+.headFont{
+    font-size: -webkit-xxx-large;
+    font-weight: 700;
+}
+.btnStyle{
+    display: block;
+    margin-top: 20px;
+    float: right;
+}
+.chat{
+   margin-top: 11%;
+    margin-left: 5%;
+}
+.buttonDisable{
+    background-color: gainsboro;
+}
+.btnsbmt{
+    color: #ffffff;
+    background-color: #00A7A4;
+    border: 1px solid #00A7A4;
+    padding: 4px 10px;
+    outline: none;
+}
+
+@media only screen  /* ipad*/
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    .chat{
+    margin-top: 26%;
+    padding-right: 8%;
+    padding-left: 0%;
+}
+
+}
+

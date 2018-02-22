@@ -1,0 +1,35 @@
+
+
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2" class="profilecol">
+        <img src="assets/img/user.png" class="profile-image"> 
+        <p class="pofile-text">{{staticText.Reload | translate: languageUse}}</p>
+      </div>
+      <div class="col-6 profilenew">
+          <img src="assets/img/back.png" routerLink="/profile" style="width: 50px; margin: -7px 0 0 -7px; ">
+        <ul class="detail-profile newulstyle">
+            <li style="display: inline-flex; border: none;">
+                <span style="display: table;padding-right:30px;">{{staticText['Enter the voucher code'] | translate: languageUse}}:</span>
+                <input type="text"  class="reloadinpt login-input" name="voucher" [pattern]="pattern" minlength="16" maxlength="16" [(ngModel)]="voucherValue" #voucher="ngModel" required/>
+               </li>
+              <div *ngIf="voucher.invalid && (voucher.dirty || voucher.touched)" class="alert alert-danger">
+                <div *ngIf="voucher.errors.required">
+                  Voucher code is required.
+                </div>
+                <div *ngIf="voucher.errors.minlength">
+                    Voucher code must be at 16 characters long.
+                  </div>
+                  <div *ngIf="voucher.errors.pattern">
+                    Only numbers are allowed.
+                  </div>
+              </div>
+              <button type="button" class="btn-flat" (click)="reloadVoucher()" style="display: block; margin-top: 20px;float: right" [disabled]="voucher.invalid"> {{staticText.Reload | translate: languageUse}}</button>
+              
+        </ul>
+      </div>
+      <div class="col-2">
+        </div>
+    </div>
+  </div>

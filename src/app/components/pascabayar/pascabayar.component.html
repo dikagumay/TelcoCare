@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2" class="profilecol">
+        <img src="assets/img/user.png" class="profile-image"> 
+        <p class="pofile-text">3Pascabayar</p>
+      </div>
+      <div class="col-6 profilenew">
+          <img src="assets/img/back.png" routerLink="/profile" class="back-img">
+          
+        <ul class="detail-profile newulstyle">
+            
+            <li style="height: 50px;">
+                <button type="button" class="btn-flat" (click)="payBill()" style="display: inline; float: right; margin-top: 5px; " > {{staticText['PAY ALL'] | translate: languageUse}}</button>
+            </li>
+            <li><span><a class="boldFont"> {{staticText.Number | translate: languageUse}} <span class="floatRight">{{(invoiceData)?.msisdn}} <span></span></span></a></span></li>
+            <ul style="list-style-type: none;">
+              <li><span><a >{{staticText['Last Bill'] | translate: languageUse}}  <span class="floatRight">IDR {{((invoiceData)?.lastmonthbill) ? ((invoiceData)?.lastmonthbill).replace(',','.') : 0}}<span></span></span></a></span></li>
+              <li><span><a >{{staticText['Over Payment'] | translate: languageUse}}  <span class="floatRight">IDR {{((invoiceData)?.excesspayment)?(invoiceData)?.excesspayment:0}}<span></span></span></a></span></li>
+              <li><span><a >{{staticText['Over Payment'] | translate: languageUse}}  <span class="floatRight">IDR {{((invoiceData)?.excesspayment)?(invoiceData)?.excesspayment:0}} <span></span></span></a></span></li>
+              <li><span><a >{{staticText['Bill Total'] | translate: languageUse}}  <span class="floatRight">IDR {{((invoiceData)?.lastmonthbill) ? ((invoiceData)?.lastmonthbill).replace(',','.') : 0}}<span></span></span></a></span></li>
+              
+            </ul>
+            <li></li>
+            <button type="button" class="btn-flat" (click)="payBill()" style="display: block; margin-top: 20px; " > {{staticText['PAY'] | translate: languageUse}}</button>
+        </ul>
+      </div>
+      <div class="col-2">
+        </div>
+    </div>
+  </div>

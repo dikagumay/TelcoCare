@@ -1,0 +1,36 @@
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text">{{staticText['Customer Satisfaction Survey'] | translate: languageUse}}</p>
+    </div>
+    <div class="col-6 profilenew">
+      <p style="font-weight: bold">{{staticText['Give feedback for this service, so we can do better'] | translate: languageUse}}</p>
+      <ul class="detail-profile newulstyle">
+          <form #f="ngForm" >
+          <li style=" border: none;">
+              <span style="display: table;padding-right:30px;">{{staticText['Your Problem Solved?'] | translate: languageUse}}</span>
+              <input type="radio" name="remark" value="Yes" ngModel> {{staticText['Yes'] | translate: languageUse}}<br>
+              <input type="radio" name="remark" value="Another_solution_suggested" ngModel> {{staticText['Another solution suggested'] | translate: languageUse}}<br>
+              <input type="radio" name="remark" value="No" ngModel> {{staticText['No'] | translate: languageUse}}
+          </li>
+          <li style=" border: none;">
+            <span style="display: table;padding-right:30px;">{{staticText['How would you rate this service'] | translate: languageUse}}</span>
+            <input type="radio" name="satisfaction" value="0" ngModel> {{staticText['Very Good'] | translate: languageUse}}<br>
+            <input type="radio" name="satisfaction" value="1" ngModel> {{staticText['Good'] | translate: languageUse}}<br>
+            <input type="radio" name="satisfaction" value="2" ngModel> {{staticText['Average'] | translate: languageUse}}<br>
+            <input type="radio" name="satisfaction" value="3" ngModel> {{staticText['Below Average'] | translate: languageUse}}<br>
+            <input type="radio" name="satisfaction" value="4" ngModel> {{staticText['Bad'] | translate: languageUse}}
+        </li>
+            
+            <button type="button" class="btn-flat" [class.buttonDisable]="disableSubmit" [disabled]="disableSubmit" (click)="submitSurvey(f)" style="display: block; margin-top: 20px;" > Submit</button>
+        </form>    
+      </ul>
+    </div>
+    <div class="col-2">
+      </div>
+  </div>
+</div>

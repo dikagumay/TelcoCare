@@ -1,0 +1,48 @@
+.imageWidth{
+   width: 11vw;
+    height: 16vh;
+    margin-left: 43%;
+    margin-top: 42%;
+}
+.headFont{
+    font-size:  xx-large;
+    font-weight: 20%;
+}
+.btnStyle{
+    display: block;
+    margin-top: 20px;
+    float: right;
+}
+.chat{
+    margin-top: 5%;
+}
+
+.chat-input{
+    border: 1px solid #ffffff !important;
+    background: #e9ecef !important;
+}
+
+.btnsbmt{
+    color: #ffffff;
+    background-color: #00A7A4;
+    border: 1px solid #00A7A4;
+    padding: 4px 10px;
+    outline: none;
+}
+
+.disabledbtn{
+    color: #c9d4d4 !important;
+    border: 1px solid #c9d4d4 !important;
+}
+
+@media only screen  /* ipad*/
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+    .chat{
+    margin-top: 32%;
+    padding-right: 8%;
+    padding-left: 0%;
+}
+
+}
+

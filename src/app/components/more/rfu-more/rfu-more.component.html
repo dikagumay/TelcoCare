@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="lft12">
+    <div class="content-top banner-image" *ngFor='let rfu of RecomendedData'>
+      <div>
+        <a [routerLink]="['/home-detail']" (click)="openDetail('',rfu, 'home')">
+          <img class="more-image-top" src="{{rfu?.metadata?.IMG_RFU}}" (error)="setImage(rfu.categoryId,'RFU',$event)">
+        </a>
+        <div class=row>
+          <div class="col-7">
+            <p class="product-name" [innerHTML]="rfu?.productName" ngbPopover="{{rfu?.productName}}" placement="top"></p>
+          </div>
+          <div class="col-5">
+            <div *ngIf="rfu?.productPrice.length < 2 &&  rfu.buttonBuy.length>0 && !rfu?.isRedirectToLink">
+              <button class="btn btn-block pricebtn" (click)="openPopup('', rfu,'')">{{rfu?.buttonBuy}}</button>
+            </div>
+            <div *ngIf="rfu?.productPrice.length >2 && !rfu?.isRedirectToLink">
+              <button class="btn btn-block pricebtn" (click)="openPopup('', rfu,'')">{{rfu?.productPrice}}</button>
+            </div>
+            <div *ngIf="rfu?.isRedirectToLink">
+              <button class="btn btn-block pricebtn" (click)="onRFUNavigate(rfu)">{{rfu?.buttonBuy}}</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.otpButton{
+    width: 115px !important;
+    margin-top: 10px !important;
+}
+a:hover { 
+    color: #4f7a93 !important;
+}
+a:visited { 
+    color: #4f7a93 !important;
+}
+.caption{ color: #5a595e;}
+
+.modalMain{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    min-height: 900px;
+    top: 0px;
+    bottom:0;
+    z-index: 99999;
+}
+.popCont{
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    margin-top: -50px;
+    text-align: center;
+    padding-top: 40px;
+    height: 100px;
+    background: #fff;
+    font-size: 14px;
+    color: #5a595e
+}
+@keyframes blink {50% { color: transparent }}
+.loader__dot { animation: 1s blink infinite }
+.loader__dot:nth-child(2) { animation-delay: 250ms }
+.loader__dot:nth-child(3) { animation-delay: 500ms }
+
+@media only screen  /* ipad*/
+and (min-device-width : 768px) 
+and (max-device-width : 1023px)  { 
+    
+    .bg-login > .white-login{
+        width: 63vw !important;
+        height:58vh !important;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .popCont{width:400px;}
+}
+
+@media screen and (max-width: 767px) and (min-width: 320px) {
+    .bg-login > .white-login > img {
+        width: 100%;
+    }
+    .bg-login > .white-login {
+        width: 90%;
+        min-height: auto;
+    }
+    .bg-login {
+        padding-top: 30px;
+    }
+}
+

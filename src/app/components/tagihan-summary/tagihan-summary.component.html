@@ -1,0 +1,72 @@
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text">{{staticText['Bill Summary'] | translate: languageUse}}</p>
+    </div>
+    <div class="col-6 profilenew">
+        <img src="assets/img/back.png" routerLink="/tagihan" style="width: 50px; margin: -7px 0 0 -7px; ">
+        <ul class="detail-profile newulstyle" *ngIf="usertype === 'Hybrid'; else elseBlock">
+          <li><span><a class="boldFont">{{(invoiceData)?.invoiceDate}}   </a></span></li>
+          <ul style="list-style-type: none;">
+            <li class="listpadding"><span><a > Month <span class="floatRight">{{(invoiceData)?.invoiceDate}}<span></span></span></a></span></li>
+            <li class="listpadding"><span><a > This Month Bill <span class="floatRight">{{(invoiceData)?.previousDue}}<span></span></span></a></span></li>
+            <li class="listpadding"><span><a > Outstanding Bill <span class="floatRight">{{(invoiceData)?.outstandingAmount}}<span></span></span></a></span></li>
+            <li class="boldFont listpadding"><span><a > Bill Total <span class="floatRight">{{(invoiceData)?.currentDue}} <span></span></span></a></span></li>
+            <li class="boldFont listpadding"><span><a > Due Date <span class="floatRight"> <span></span></span></a></span></li>
+          </ul>
+          <li></li>
+          <li><span><a class="boldFont"> Usage Details </a></span></li>
+          <ul style="list-style-type: none;-webkit-padding-start: 0px;">
+            <table class="tableClass">
+              <tr>
+                <td>Date</td>
+                <td>Package</td>
+                <td>Nominal</td>
+              </tr>
+            </table>
+          </ul>
+          <li></li>
+          <div style="display: inline; margin-top: 10px;">
+            <button type="button" class="btn-flat emailbutton" (click)="emailInvoice()" style="display: inline; " > EMAIL</button>
+            <button type="button" routerLink='/3pascabayar' class="btn-flat payButton" (click)="paybill()" > {{staticText['PAY'] | translate: languageUse}}</button>
+           
+          </div>
+        </ul>
+     
+      <ng-template #elseBlock>
+        <ul class="detail-profile newulstyle" >
+          <li><span><a class="boldFont"> {{(invoiceData)?.endperiod}} </a></span></li>
+          <ul style="list-style-type: none;">
+            <li><span><a > Bill Due Date <span class="floatRight">{{(invoiceData)?.endperiod}} <span></span></span></a></span></li>
+            <li><span><a > Periode <span class="floatRight">{{(invoiceData)?.startperiod}} - {{(invoiceData)?.endperiod}}<span></span></span></a></span></li>
+            <li><span><a > Tagihan Terakhir <span class="floatRight">IDR {{(invoiceData)?.lastmonthbill}} <span></span></span></a></span></li>
+            <li><span><a > Pembayaran Diterima <span class="floatRight">IDR {{(invoiceData)?.paymentreceived}}<span></span></span></a></span></li>
+            <li><span><a > Total Pemakaian <span class="floatRight">IDR {{(invoiceData)?.thismonthbill}} <span></span></span></a></span></li>
+            <li class="boldFont"><span><a > Total Tagihan <span class="floatRight">IDR {{(invoiceData)?.totaldue}} <span></span></span></a></span></li>
+            <li class="boldFont"><span><a > Tanggal Jatuh Tempo <span class="floatRight">IDR {{(invoiceData)?.invoiceduedate}} <span></span></span></a></span></li>
+          </ul>
+          <li><span><a class="boldFont"> Detail </a></span></li>
+          <ul style="list-style-type: none;">
+            <li><span><a > Abodemen <span class="floatRight">IDR {{(invoiceData)?.abodemen}} <span></span></span></a></span></li>
+            <li><span><a > Biaya Pemakaian <span class="floatRight"><span></span></span></a></span></li>
+            <li><span><a > Sub Total <span class="floatRight">{{(invoiceData)?.subtotal}} <span></span></span></a></span></li>
+            <li><span><a > Diskon <span class="floatRight">{{(invoiceData)?.totaldiscount}}<span></span></span></a></span></li>
+            <li class="boldFont"><span><a > Total Pemakaian <span class="floatRight">IDR 0 <span></span></span></a></span></li>
+            <li class="boldFont"><span><a > Total Tagihan <span class="floatRight">IDR 0 <span></span></span></a></span></li>
+          </ul>
+          <div style="display: inline;">
+            <button type="button" class="btn-flat emailbutton" (click)="emailInvoice()" style="display: inline; " > EMAIL</button>
+            <button type="button" routerLink='/3pascabayar' class="btn-flat payButton" (click)="paybill()" > {{staticText['PAY'] | translate: languageUse}}</button>
+           
+          </div>
+        </ul>
+      </ng-template>
+    </div>
+    <div class="col-2">
+      </div>
+  </div>
+</div>

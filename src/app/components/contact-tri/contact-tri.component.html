@@ -1,0 +1,20 @@
+
+ <div class= "container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text">{{staticText['Contact Tri'] | translate: languageUse}}</p>
+    </div>
+    <div class="col-6 profilenew">
+      <ul class="detail-profile newulstyle"  style="margin-top: 10%;">
+         <li (click)="chatCare()"><span><a > 3Chat Care <span class="floatRight"> &rsaquo; <span></span></span></a></span></li>
+         <li (click)="leaveMsg()"><span><a > {{staticText['Leave a Message'] | translate: languageUse}} <span class="floatRight">&rsaquo;<span></span></span></a></span></li>
+      </ul>
+    </div>
+    <div class="col-2">
+
+    </div>
+
+  </div>
+    
+</div> 

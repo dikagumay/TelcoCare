@@ -1,0 +1,169 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image">
+      <p class="pofile-text">{{staticText.Profile | translate: languageUse}}</p>
+    </div>
+    <div class="col-6 profilenew">
+      <ul class="detail-profile newulstyle">
+        <li>
+          <a class="paddingList profilehead">
+            <img src="assets/img/btn-card.png"> {{staticText['Your Tri Number'] | translate: languageUse}}
+            <span class="profidata">{{(profileData)?.msisdn}}
+              <span></span>
+            </span>
+          </a>
+        </li>
+        <li *ngIf="_userPostpaid == 'Prepaid' || _userPostpaid == 'Hybrid'" routerLink="/reload">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-rp.png"> {{staticText['Main Balance'] | translate: languageUse}}
+              <span class="profidata floatRight" style="margin-top: -10px;">
+              {{(profileData)?.balance}}
+                <samp style="font-size: 30px;">&rsaquo;</samp>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Hybrid'">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-cc.png"> {{staticText['Remaining Credit'] | translate: languageUse}}
+              <span class="profidata floatRight">
+              {{(profileData)?.creditLimitHybrid}}
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Postpaid'" routerLink="/remaining-credit">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-cc.png"> {{staticText['Credit Balance'] | translate: languageUse}}
+              <span class="profidata floatRight" style="margin-top: -10px;">
+              {{(profileData)?.creditLimit}}
+                <samp class= "profidata" style="font-size: 30px;">&rsaquo;</samp>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li>
+          <span class="refresh">
+            <a class="profilehead">
+              <img src="assets/img/btn-refresh.png"> {{staticText.Validity | translate: languageUse}}
+              <span class="profidata floatRight">{{(profileData)?.validity}}
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Postpaid'">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-date.png"> {{staticText['Payment Due Date'] | translate: languageUse}}
+              <span class="profidata floatRight">{{(profileData)?.dueDate}}
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li (click)="isShow = !isShow">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-box.png"> {{staticText.Package | translate: languageUse}}
+              <span class="profidata floatRight marginTop-5">
+                <samp *ngIf="!isShow" style="font-size: 30px;">&rsaquo;</samp>
+                <i *ngIf="isShow" class="fa fa-chevron-down" style="font-size: large;    margin-top: 5px;"
+                  aria-hidden="true"></i>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <div *ngIf="isShow">
+          <div class="topPaddong leftrightPadding" *ngFor="let package of packageList; let i = index;">
+            <p>
+              <span>{{package.name}}</span>
+              <span class="floatRight profilLstHit" (click)="this['variable' + i] = !this['variable' + i];">
+                <span>{{package.detail[0].value}}</span>
+                <span class="leftPadding">
+                  <samp *ngIf="!this['variable' + i]" style="font-size: 30px;">&rsaquo;</samp>
+                  <i *ngIf="this['variable' + i]" class="fa fa-chevron-down" style="font-size: large;    margin-top: 5px;"
+                    aria-hidden="true"></i>
+                  <span></span>
+                </span>
+              </span>
+            </p>
+            <div *ngIf="this['variable' + i]">
+              <div class="content_box">
+                <p>
+                  <span>{{staticText['Remaining Quota'] | translate: languageUse}}</span>
+                  <span class="floatRight">{{package.detail[0].value}}</span>
+                </p>
+                <p>
+                  <span>{{staticText.Validity | translate: languageUse}}</span>
+                  <span class="floatRight">{{package.detail[0].validity}}</span>
+                </p>
+
+              </div>
+              <!-- <button type="button" class="btn-full buttonStyle" routerLink="/ShareKouta" *ngIf="package.isShareQuota"> SHARE KUOTA</button> -->
+              <button type="button" class="btn-full buttonStyle" (click)="unsuscribe()" *ngIf="package.isRenewable"> BERHENTI</button>
+            </div>
+
+
+          </div>
+        </div>
+
+
+        <li *ngIf="_userPostpaid == 'Postpaid'">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-at.png"> Email
+              <span routerLink="/email" class="profidata floatRight" style="margin-top: -10px;">{{(profileData)?.email}}
+                <samp style="font-size: 30px;">&rsaquo;</samp>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Hybrid'">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-at.png"> Email
+              <span routerLink="/email" class="profidata floatRight" style="margin-top: -10px;">{{(profileData)?.emailHybrid}}
+                <samp style="font-size: 30px;">&rsaquo;</samp>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Prepaid' || _userPostpaid == 'Hybrid'">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-gift.png"> {{staticText['TRIms Balance'] | translate: languageUse}}
+              <span class="profidata floatRight">IDR 0
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+        <li *ngIf="_userPostpaid == 'Postpaid' || _userPostpaid == 'Hybrid'" routerLink="/tagihan">
+          <span>
+            <a class="paddingList profilehead">
+              <img src="assets/img/btn-gift.png"> {{staticText.Bill | translate: languageUse}}
+              <span class="profidata floatRight marginTop-5">
+                <samp style="font-size: 30px;">&rsaquo;</samp>
+                <span></span>
+              </span>
+            </a>
+          </span>
+        </li>
+
+      </ul>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+</div>

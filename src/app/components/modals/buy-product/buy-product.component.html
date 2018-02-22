@@ -1,0 +1,43 @@
+   <!-- Modal Header -->
+   <div class="modal-header"  style="border:none;">
+    <h4 class="title modal-title pull-left">{{staticText['Confirmation, you will purchase.'] | translate: languageUse}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="closepopup();">X
+  </button>
+</div>
+<!-- Modal Body  -->
+<div class="modal-body" style="margin-top: -40px;">
+  <div *ngIf="modalList.paymentMatrix[0] == 0">
+    <table>
+        <tr>
+          <td style="min-width: 115px">{{staticText['Package Name'] | translate: languageUse}}:</td>
+          <td style="padding-left: 15px;">{{modalList.productName}}</td>
+        </tr>
+        <tr>
+           <td style="min-width: 115px;padding-left: 50px;">Price:</td>
+           <td style="padding-left: 15px;">{{buyamnt}}</td>
+         </tr>
+         <tr *ngFor='let payments of modalList.paymentList'>
+             <td style="min-width: 115px;padding-left: 65px;">Via:</td>
+             <td style="padding-left: 15px;">{{payments.methodName}}</td>
+           </tr>
+      </table>
+  </div>
+<!-- code dont change-->  <div *ngIf="modalList.paymentMatrix[0] == 1">
+      <div *ngFor='let payments of modalList?.paymentList'> 
+        <label class="custom-control custom-radio">
+          <input name="radio"  type="radio" class="custom-control-input" value="{{payments?.methodName}}" [(ngModel)]="selectedMethod">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">{{payments?.methodName}}</span>
+          </label>
+       </div>
+  </div>
+</div> 
+
+<!--Modal Footer -->
+<div class="modal-footer row" style="border:none;">
+       <div class="col-12">
+           <button class="btn btn-sm confirmbtn" (click)='purchasePlan();'> {{staticText['Buy'] | translate: languageUse}} </button>
+       </div>
+      
+
+</div>

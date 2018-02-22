@@ -1,0 +1,49 @@
+<div class= "ownContainer">
+  
+    <!--
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text"></p>
+    </div>
+  -->
+    <div class="profilenew chatboxstyle">
+        <div><img src="assets/img/back.png" (click)="back();" style="width: 50px;margin-top: 15px;margin-left: -5px;"></div>
+      
+         <div class="msgdiv">
+            <p>{{staticText['Welcome to 3Chat, Can we help you?'] | translate: languageUse}}</p>
+         </div>
+        
+
+      <!--chat List Request starts -->
+      <div class="chatboxstyle">
+        <div class="charHeit">
+            <div class="chats" >
+                <div [class.res]="chat.type === 'res'" *ngFor="let chat of chatArray">
+                    <!-- <p [class.req]="chat.type === 'req'">{{chat.val}} </p> -->
+                    <p [class.req]="chat.type === 'req'" [innerHTML]="chat.val"></p>
+                </div>
+            </div>
+            <!-- <div style="float:right;margin-top: 20px;">
+              <div class="chats" >
+                  <p *ngFor="let chat of chatRespArray" [innerHTML]="chat"></p>
+                </div>
+          </div> -->
+          
+        </div>
+      </div>
+     
+       <!--chat List Response starts -->
+       <div class="row"></div>
+
+      <!--chat List ends -->
+
+      <!--chat compose box starts -->
+      <div class="chatBox">
+      <div class="compose">        
+          <input type="text" class="inputStyl" (keyup.enter)="startChat()" [(ngModel)]="chatTxt">
+          <button (click)="startChat()" style="border:none;"> > </button>                 
+        </div>
+      </div>
+    </div> 
+    
+</div> 

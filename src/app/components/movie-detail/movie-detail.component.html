@@ -1,0 +1,123 @@
+<div class="grayBg">
+ <div class="container">
+    
+    <div class="proDetail">
+      <!-- <img src="{{detailList?.metadata?.IMG_BANNER_BIG}}" class="banner-img" onError="this.src='../../../assets/img/DefaultGame1.png'"> -->
+      <div style="position:relative;" id="maindiv">
+          <img id="bannerimg" class="banner-img" src="{{detailList?.metadata?.IMG_BANNER_BIG}}" onError="this.src='../../../assets/img/DefaultMovie1.png'">		
+          <img id="playvid" *ngIf="detailList?.metadata?.VID_BANNER" src="../../assets/img/Play.png" class="playdetailicon"  (click)="playVideo(detailList?.metadata?.VID_BANNER)">	
+      </div>
+      <div class="row">
+          <div class="col-7">
+            <div class="rating" style="display: inline-block;">
+              <h1>{{detailList?.productName}}</h1>                
+                  <img class="product-star" src="../../../assets/img/{{rating}}.png">                
+            </div>
+
+          </div>
+          <div class="col-5">
+            <div *ngIf=" detailList?.buttonBuy && detailList.isRedirectToLink ">
+              <button class="detail-button"  (click)="onNavigate();">{{detailList?.buttonBuy}}</button>
+            </div>
+            <div *ngIf=" !detailList?.buttonBuy  && detailList?.productPrice && detailList.isRedirectToLink ">
+              <button class="detail-button"  (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+            </div>
+            <div *ngIf="!detailList?.buttonBuy && detailList?.productPrice && !detailList.isRedirectToLink ">
+              <button class="detail-button" (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+            </div>
+            <div *ngIf="detailList?.buttonBuy && detailList?.productPrice && !detailList.isRedirectToLink ">
+              <button class="detail-button" (click)="openPopup(detailList);">{{detailList?.productPrice}}</button>
+            </div>
+          </div>
+        </div>
+<div class="row" style="margin:0;">
+                <h2 class="label-desc bordertop padding-top">{{detailList?.labelDescription}}</h2>
+                        <!-- <p [innerHTML]="detailList.productDescription" class=" detail-content"></p> -->
+                        <div  *ngIf = "detailList.productDescription?.length > 200">
+                          <div  *ngIf = "showmore">
+                            <p  [innerHTML]="detailList?.productDescription |slice:0:200" class=" detail-content"></p>
+                            <p  class ="showmore" (click)="onshowmore()">{{staticText['...More'] | translate: languageUse}}<p>
+                            
+                          </div>
+                          <div  *ngIf = "!showmore">
+                            <p  [innerHTML]="detailList?.productDescription "  class= " detail-content"></p>
+                            <p  class="showless" (click)="onshowless()"> {{staticText['...Less'] | translate: languageUse}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf = "detailList.productDescription?.length < 200">
+                          <p  [innerHTML]="detailList?.productDescription" style="float: left;" class=" detail-content"></p>
+                        </div>
+      </div>
+    
+      <div class="col-12" *ngIf="detailList?.isDownloadLink" style="border-top: 2px solid #808080!important;padding:0px;">  
+      <div class="row">
+          
+          <div class="col-8">
+            <p style="color: #00A7A4 !important;margin-bottom: 0;padding-top: 8px;font-weight: bold;">Unduh</p> 
+          </div>
+          <div class="col-4">
+            <img style="width:25px;float: right; margin-top: 7px;margin-bottom: 5px;" src="../../../assets/img/Download-2.png" (click)="onDownload();">
+          </div>
+ 
+                      
+                    
+        </div>
+      </div>
+      
+      <div class="row" style="margin:0;">
+                <h2 *ngIf="detailList?.labelPricing" class="label-desc bordertop padding-top">{{detailList.labelPricing}} </h2>
+        <div *ngIf="detailList?.productPrice > 0 " class=" tableparner bordertop">
+
+            <div class="tableparner " *ngFor='let vendors of detailList?.vendorList'>
+
+                <div class="tableTitle">
+                    <div class="titleLst boldTxt">Provider</div>
+                    <div class="titleLst">{{vendors?.vendorName}}</div>
+                </div>
+
+                <div class="priceDiv">
+                  <ul>
+                    <li *ngFor='let prices of vendors?.priceList'>
+                        <span class="span-text boldTxt"> {{prices?.planName}}</span>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li *ngFor='let prices of vendors?.priceList'>
+                          <span class="span-text"> {{prices?.price}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          <!--
+          <table class="tableparner " *ngFor='let vendors of detailList?.vendorList'>
+            <tr class=" tableparner ">
+              <td>Provider</td>
+              <td *ngFor='let prices of vendors?.priceList'>
+                <span class="span-text"> {{prices?.planName}}</span>
+              </td>
+            </tr>
+            <tr class=" bordertop">
+              <td>{{vendors?.vendorName}}</td>
+              <td *ngFor='let prices of vendors?.priceList'>
+                <span class="span-text"> {{prices?.price}}</span>
+              </td>
+            </tr>
+            <tr>
+            </tr>
+          </table>
+        -->
+        </div>
+        <div   *ngIf= "detailList?.productHowTo"> 
+          <p style="color: #00A7A4 !important;font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: bold;font-size: 14px;margin-top: 11px !important;" [innerHTML] = "labelhowto"></p>
+          <p [innerHTML] = "producthowto" class=" product-howto "></p>
+         </div>
+         <p [innerHTML] = "detailList?.productPricing" ></p>
+
+
+      </div>
+                      
+
+    </div>
+    
+  </div>  
+</div>

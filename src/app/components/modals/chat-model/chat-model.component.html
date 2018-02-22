@@ -1,0 +1,17 @@
+
+  <!-- Modal Body -->
+  <div class="modal-body txtCntr" *ngIf="agentchat">
+      <p>{{staticText['Your Chat Session has been closed by the agent. Please log back in.'] | translate: languageUse}}</p>
+   </div>
+  <div class="modal-body txtCntr" *ngIf="!agentchat">
+     <p>{{staticText['Are you sure want to end the chat session?'] | translate: languageUse}}</p>
+  </div>
+   <!--Modal Footer -->
+   <div class="modal-footer" *ngIf="agentchat">
+      <div class="btnChat100"><button class="chatcare" style=" margin: 0 auto; background-color: #00A7A4;" (click)="yesModal();">{{staticText['Ok'] | translate: languageUse}}</button></div>
+    </div>
+
+   <div class="modal-footer" *ngIf="!agentchat">
+     <div class="btnChat"><button  style="background-color: red !important;" class="chatcare"  (click)="noModal();" >{{staticText['No'] | translate: languageUse}}</button></div>
+     <div class="btnChat"><button style="background-color: #00A7A4;" class="chatcare"  (click)="yesModal();">{{staticText['Yes'] | translate: languageUse}}</button></div>
+   </div>

@@ -1,0 +1,301 @@
+<div class="container-fluid" style=" overflow:hidden;">
+	<div class="row">
+		<div class="col-12">
+			<swiper overlay-controls [config]="bannerconfig">
+				<div *ngFor='let banner of homeList?.bannerList; let i = index;' class="homeSwiperBanner">
+					<div class="swiper-slide-content">
+						<div *ngIf="!banner?.metadata?.VID_BANNER">
+							<a [routerLink]="[]" *ngIf="!banner?.metadata?.VID_BANNER" (click)="openDetail('',banner)">
+								<img src="{{banner?.metadata?.IMG_BANNER}}" (error)="setImage(banner.categoryId,'Banner',$event)" class="home-banner">
+							</a>
+						</div>
+						<div *ngIf="banner?.metadata?.VID_BANNER" id="{{'ifr' + i}}" class="ifrmclass">
+							<a [routerLink]="[]" class="vidMain">
+								<span id="{{'playbtn' + i }}" (click)="playVideo(banner?.metadata?.VID_BANNER, i)">
+									<img src="../../assets/img/Play.png" class="playicon">
+								</span>
+							</a>
+							<img id="{{'vidimg' + i }}" src="{{banner?.metadata?.IMG_BANNER}}" (error)="setImage(banner.categoryId,'Banner',$event)"
+							 class="home-banner" (click)="openDetail('',banner)">
+						</div>
+					</div>
+				</div>
+			</swiper>
+		</div>
+	</div>
+	<div class="row seeall">
+		<div class="col-12">
+			<a (click)="openMore(null,'morehomebanner','','seeAll')">
+				<p class="more-button2"> {{staticText['See All'] | translate: languageUse}}
+					<img src='../../../assets/img/more arrow.png' class="morearrow1">
+				</p>
+			</a>
+		</div>
+	</div>
+
+	<!-- RFU -->
+	<div class="row" *ngIf="recommendedList?.products?.length > 0">
+		<div class="col-12">
+			<div class="row">
+				<div class="col-7">
+					<h4 class="recommended-name">{{recommendedList?.name}}</h4>
+				</div>
+				<div class="col-5 paddLft0">
+					<a (click)='openMore(detail?.id,"rfu","","rfu")'>
+						<p class="more-button"> {{staticText['More'] | translate: languageUse}}
+							<img src='../../../assets/img/more arrow.png' class="morearrow1">
+						</p>
+					</a>
+				</div>
+			</div>
+			<swiper overlay-controls [config]="rfuConfig">
+				<div *ngFor='let rfu of recommendedList?.products' class="rfuswiper-slide-box">
+					<div class="swiper-slide-content" class="content content1Height">
+						<a [routerLink]="['/home-detail']" (click)="openDetail(recommendedList, rfu)">
+							<img src="{{rfu?.metadata.IMG_RFU}}" class="recommended-image" (error)="setImage(rfu.categoryId,'RFU',$event)">
+						</a>
+						<div>
+							<div class="cus-xs-12 cus-sm-7 adjustResponcive paddingLft0">
+								<p class="product-name marginTop10" [innerHTML]="rfu?.productName" ngbPopover="{{rfu?.productName}}" placement="top"> </p>
+							</div>
+							<div class="cus-xs-12 cus-sm-5 adjustResponciveButton paddingLft0 paddingRit0">
+								<!-- <button  type="button" style= "float:right !important; border-radius: 0 !important;" class="btn btn-large pricebtn" (click)="openPopup(recommendedList, rfu)">{{rfu?.productPrice}}</button> -->
+								<div *ngIf="rfu?.productPrice.length < 2 &&  rfu.buttonBuy.length>0 && !rfu?.isRedirectToLink">
+									<button class="btn btn-block pricebtn" (click)="openPopup(recommendedList, rfu,'RFU')">{{rfu?.buttonBuy}}</button>
+								</div>
+								<div *ngIf="rfu?.productPrice.length >2 && !rfu?.isRedirectToLink">
+									<button class="btn btn-block pricebtn" (click)="openPopup(recommendedList, rfu,'RFU')">{{rfu?.productPrice}}</button>
+								</div>
+								<div *ngIf="rfu?.isRedirectToLink">
+									<button class="btn btn-block pricebtn" (click)="onRFUNavigate(rfu)">{{rfu?.buttonBuy}}</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- </div> -->
+			</swiper>
+		</div>
+	</div>
+	<!-- Other Category -->
+	<div class="row" *ngFor='let detail of homeList?.detailList'>
+		<div class="col-12">
+			<div class="row">
+				<div class="col-7">
+					<h1 class="label-name">{{detail.name}}</h1>
+				</div>
+				<div class="col-5 paddLft0">
+					<a (click)='openMore(detail?.id,"undefined",detail?.name, detail?.id2)'>
+						<p class="more-button"> {{staticText['More'] | translate: languageUse}}
+							<img src='../../../assets/img/more arrow.png' class="morearrow1">
+						</p>
+					</a>
+				</div>
+			</div>
+			<div class="row marLRMinas">
+				<div class="col-12 col-md-12">
+					<swiper overlay-controls [config]="config" class="sliderbtn">
+						<div *ngFor='let detbanner of detail?.productList' class="swiper-slide-box">
+							<!-- three page -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == 3" class="content">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" class="product-image" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div>
+									<div>
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+									</div>
+								</div>
+								<div class="col-4 col-md-4"></div>
+
+							</div>
+							<!-- music page -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == 2" class="content-square">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" class="product-image-square" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div>
+									<div>
+
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+
+									</div>
+								</div>
+								<div class="col-4 col-md-4"></div>
+
+							</div>
+							<!-- game page  -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == 4" class="content-square">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" class="product-image-square" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div class="">
+									<div>
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+
+									</div>
+								</div>
+								<div class="col-4 col-md-4"></div>
+
+							</div>
+							<!-- ncopage -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == 5" class="content-square">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_SQUARE_BIG}}" class="product-image-square" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div class="">
+									<div>
+
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+
+									</div>
+								</div>
+								<div class="col-4 col-md-4"></div>
+
+							</div>
+							<!-- movie page -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == 1" class="content">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" class="product-image" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div>
+									<div>
+
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+
+
+									</div>
+								</div>
+								<div class="col-4 col-md-4"></div>
+
+							</div>
+							<!-- home page -->
+							<div class="swiper-slide-content" *ngIf="detbanner?.categoryId == -1" class="content">
+								<a [routerLink]="['/home-detail']" (click)="openDetail(detail, detbanner)">
+									<img src="{{detbanner?.metadata?.IMG_PRODUCT_PORTRAIT_BIG}}" class="product-image" (error)="this.src = setImage(detbanner.categoryId,'Products',$event)">
+
+								</a>
+								<div>
+									<div>
+										<p class="product-name" [innerHTML]="detbanner?.productName" ngbPopover="{{detbanner?.productName}}" placement="top"></p>
+									</div>
+								</div>
+								<div>
+									<div>
+										
+										<div *ngIf=" detbanner?.buttonBuy && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="onNavigate('', detbanner);">{{detbanner?.buttonBuy}}</button>
+										</div>
+										<div *ngIf=" !detbanner?.buttonBuy  && detbanner?.productPrice && detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="!detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+										<div *ngIf="detbanner?.buttonBuy && detbanner?.productPrice && !detbanner.isRedirectToLink ">
+											<button style="border-radius: 0 !important; " class="btn btn-block pricebtn" (click)="openPopup('', detbanner);">{{detbanner?.productPrice}}</button>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+
+
+						</div>
+
+
+					</swiper>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>

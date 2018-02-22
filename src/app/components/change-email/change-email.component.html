@@ -1,0 +1,26 @@
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2" class="profilecol">
+      <img src="assets/img/user.png" class="profile-image"> 
+      <p class="pofile-text"> Email</p>
+    </div>
+    <div class="col-6 profilenew">
+        <img src="assets/img/back.png" routerLink="/profile" style="width: 50px;">
+      <ul class="detail-profile newulstyle">
+        <li style="display: inline-flex; border: none; width: 90%;"><span style="display: table;padding-right:30px;">Email:</span> <input type="email" class="login-input" name="email" [(ngModel)]="emailvalue" #email="ngModel" required/> </li>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email is required.
+          </div>
+        </div>
+        <button type="button" class="btn-flat" (click)="changeEmail()" style="display: block; margin-top: 20px;float: right;" [disabled]="email.invalid"> {{staticText['Submit'] | translate: languageUse}}</button>
+            
+      </ul>
+    </div>
+    <div class="col-2">
+      </div>
+  </div>
+</div>

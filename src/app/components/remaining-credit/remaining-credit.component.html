@@ -1,0 +1,45 @@
+
+
+
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-2" class="profilecol">
+          <img src="assets/img/user.png" class="profile-image"> 
+          <p class="pofile-text">{{staticText['Remaining Credit Limit'] | translate: languageUse}} </p>
+        </div>
+        <div class="col-6 profilenewcredit">
+            <img src="assets/img/back.png" routerLink="/profile" class="back-img">
+          <ul class="detail-profile newulstyle">
+              <li><span><a class="boldFont"> {{staticText['Paid Bill'] | translate: languageUse}} <span class="floatRight">{{msisdn}} <span></span></span></a></span></li>
+              <li><span><a class="boldFont"> {{staticText.Credit | translate: languageUse}} </a></span></li>
+              <ul style="list-style-type: none;">
+                <li><span><a > {{staticText['Total Credit Limit'] | translate: languageUse}} <span class="floatRight">IDR {{creditData?.totalCreditLimit}}<span></span></span></a></span></li>
+                <li><span><a > {{staticText['Remaining Credit Limit'] | translate: languageUse}} <span class="floatRight">IDR {{creditData?.remainingCreditLimit}}<span></span></span></a></span></li>
+                
+              </ul>
+              <li></li>
+              <li><span><a class="boldFont"> Bill </a></span></li>
+              <ul style="list-style-type: none;">
+                <li><span><a > {{staticText['Previous Bill'] | translate: languageUse}} <span class="floatRight">IDR {{creditData?.prevBill}} <span></span></span></a></span></li>
+                <li><span><a > {{staticText['Current Bill'] | translate: languageUse}} <span class="floatRight">IDR {{creditData?.currBill}}<span></span></span></a></span></li>
+                
+              </ul>
+              <li></li>
+              <li><span><a class="boldFont"> {{staticText.Payment | translate: languageUse}} </a></span></li>
+              <ul style="list-style-type: none;">
+                <li><span><a > {{staticText.Status | translate: languageUse}} <span class="floatRight">{{creditData?.status}} <span></span></span></a></span></li>
+                <li><span><a > {{staticText['Payment Due Date'] | translate: languageUse}} <span class="floatRight">{{creditData?.paymentDueDate}}<span></span></span></a></span></li>
+                
+              </ul>
+              <li></li>
+              <div style="display: inline;">
+                  <button type="button" class="btn-flat emailbutton"  routerLink='/tagihan' style="display: inline;margin-top: 10px; " >  {{staticText['BILL SUMMARY'] | translate: languageUse}}</button>
+                  <button type="button" routerLink='/3pascabayar' class="btn-flat payButton" style="margin-top: 10px;" > {{staticText.PAY | translate: languageUse}}</button>
+                 
+                </div>
+          </ul>
+        </div>
+        <div class="col-2">
+          </div>
+      </div>
+    </div>

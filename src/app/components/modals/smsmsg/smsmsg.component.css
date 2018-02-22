@@ -1,0 +1,9 @@
+.confirmbtn{
+    margin-top: 2px;
+    color: #00A7A4;
+    background-color: #fff;
+    border: 1px solid #00A7A4;
+    padding: 6px 15px;
+    margin-left: 15px;
+    float: right;
+}
